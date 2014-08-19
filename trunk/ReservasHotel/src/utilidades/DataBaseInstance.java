@@ -26,8 +26,10 @@ public final class DataBaseInstance {
                 conn = DriverManager.getConnection(url, usuario, contraseña);
             } catch (ClassNotFoundException se) {
                 System.out.println("Error 1:" + se);
+                JOptionPane.showMessageDialog(null,"Error de controlador durante la comunicacion con base de datos "+basedatos+"\n\n\tDriver Instalado:\n\t"+driver+"\nCodigo de error:\n"+se, "¡ups! Algo inesperado ha pasado", JOptionPane.ERROR_MESSAGE);
             } catch (SQLException se) {
                 System.out.println("Error 2:" + se);
+                JOptionPane.showMessageDialog(null,"Error de lectura/escritura durante la comunicacion con base de datos "+basedatos+"\nCodigo de error:\n"+se, "¡ups! Algo inesperado ha pasado", JOptionPane.ERROR_MESSAGE);
             }
         }
         System.out.println(conn);
@@ -45,6 +47,7 @@ public final class DataBaseInstance {
         } catch (SQLException se) {
             System.out.println(se.toString());
             System.err.println("Se ha producido un error al cerrar la conexion de BD.");
+            JOptionPane.showMessageDialog(null,"Error se terminaba la comunicación con base de datos "+basedatos+"\nCodigo de error:\n"+se, "¡ups! Algo inesperado ha pasado", JOptionPane.WARNING_MESSAGE);
             System.err.println(se.getMessage());
         }
     }
