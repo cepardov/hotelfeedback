@@ -3,15 +3,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import utilidades.conexionbd;
 import models.entity.Usuario;
+import utilidades.DataBaseInstance;
 /**
  *
  * @author Luis
  */
 public class Usuariodao {
     protected Connection getConnection() {
-        return conexionbd.getInstanceConnection();
+        return DataBaseInstance.getInstanceConnection();
     }
 
  
@@ -119,6 +119,6 @@ public class Usuariodao {
     }
 
     protected void closeConnection() {
-        conexionbd.closeConnection();
+        DataBaseInstance.closeConnection();
     }
 }

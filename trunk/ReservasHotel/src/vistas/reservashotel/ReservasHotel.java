@@ -1,5 +1,5 @@
 package vistas.reservashotel;
-import utilidades.conexionbd;
+import utilidades.DataBaseInstance;
 
 public class ReservasHotel {
 
@@ -7,6 +7,6 @@ public class ReservasHotel {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        conexionbd.getInstanceConnection();
+        DataBaseInstance.getInstanceConnection();
     }
 }

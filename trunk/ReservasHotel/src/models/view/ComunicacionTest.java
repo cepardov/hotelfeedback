@@ -6,9 +6,8 @@
 
 package models.view;
 
+import java.sql.Connection;
 import utilidades.DataBaseInstance;
-import utilidades.conexionbd;
-
 /**
  *
  * @author cepardov
@@ -20,6 +19,9 @@ public class ComunicacionTest extends javax.swing.JFrame {
      */
     public ComunicacionTest() {
         initComponents();
+    }
+    protected Connection getConnection() {
+        return DataBaseInstance.getInstanceConnection();
     }
 
     /**
