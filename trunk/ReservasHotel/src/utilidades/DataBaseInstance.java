@@ -2,43 +2,50 @@ package utilidades;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-public class DataBaseInstance {
-   private static final String basedatos = "bdhotel";//Nombre de base de datos
-   private static final String usuario = "root";//Usuario de base de datos
-   private static final String contraseña = "123";//Contraseña de base de datos
-   private static final String port="";//Puerto de base de datos
-   //Drivers disponibles
-   //Mysql com.mysql.jdbc.Driver
-   //Apache derby org.apache.derby.jdbc.ClientDriver
-   private static final String driver="org.apache.derby.jdbc.ClientDriver";//Driver
-   //Conexión con bases de datos mysql
-   //private static final String url = "jdbc:mysql://localhost"+port+"/"+basedatos;//url, si no utiliza este comentar. (no modificar)
-   //Conexion con base de datos apache derby
-   private static final String url = "jdbc:derby://localhost"+port+"/"+basedatos;//url, si no utiliza este comentar. (no modificar)
-   Connection conn = null;
+public final class DataBaseInstance {
 
-   public DataBaseInstance() {
-      try{
-         Class.forName(driver);
-         conn = DriverManager.getConnection(url,usuario,contraseña);
-         if (conn!=null){
-             System.out.println("Usted se ha conectado a la base de datos "+basedatos+".");
-             System.out.println("Como usuario: "+usuario);
-         }
-      }catch(SQLException se){
-          JOptionPane.showMessageDialog(null,"Error de lectura/escritura con base de datos"+basedatos+":\n\n\tCodigo de excepción:\n"+ se, "¡ups! Algo inesperado ha pasado", JOptionPane.ERROR_MESSAGE);
-          System.exit(0);
-      }catch(ClassNotFoundException se){
-          JOptionPane.showMessageDialog(null,"Error de controlador mientras de intentaba una conexion con base de datos"+basedatos+":\n\n\tCodigo de excepción:\n\tControlador usado: "+driver+"\n"+ se, "¡ups! Algo inesperado ha pasado", JOptionPane.ERROR_MESSAGE);
-          System.exit(0);
-      }
-   }
-   public Connection getConnection(){
-      return conn;
-   }
+    private static Connection conn;
+    private static final String basedatos = "reservashotel";//Nombre de base de datos
+    private static final String usuario = "root";//Usuario de base de datos
+    private static final String contraseña = "1234";//Contraseña de base de datos
+    private static final String port="1527";//Puerto de base de datos
+    //Drivers disponibles
+    //Mysql com.mysql.jdbc.Driver puerto 3306
+    //Apache derby org.apache.derby.jdbc.ClientDriver puerto 1527
+    private static final String driver="org.apache.derby.jdbc.ClientDriver";//Driver
+    //Conexión con bases de datos mysql
+    //private static final String url = "jdbc:mysql://localhost"+port+"/"+basedatos;//url, si no utiliza este comentar. (no modificar)
+    //Conexion con base de datos apache derby
+    private static final String url = "jdbc:derby://localhost:"+port+"/"+basedatos;//url, si no utiliza este comentar. (no modificar)
 
-   public void desconectar(){
-      conn = null;
-      System.out.println("La conexion a la  base de datos "+basedatos+" a terminado");
-   }
+    public static Connection getInstanceConnection() {
+        if (!(conn instanceof Connection)) {
+            System.out.println("Conectando a la BD.");
+            try {
+                Class.forName(driver);
+                conn = DriverManager.getConnection(url, usuario, contraseña);
+            } catch (ClassNotFoundException se) {
+                System.out.println("Error 1:" + se);
+            } catch (SQLException se) {
+                System.out.println("Error 2:" + se);
+            }
+        }
+        System.out.println(conn);
+        return conn;
+    }
+
+    public static void closeConnection() {
+        try {
+            if (conn instanceof Connection) {
+                conn.close();
+                conn = null;
+                System.out.println("Se ha cerrado la conexion de BD con exito.");
+            }
+
+        } catch (SQLException se) {
+            System.out.println(se.toString());
+            System.err.println("Se ha producido un error al cerrar la conexion de BD.");
+            System.err.println(se.getMessage());
+        }
+    }
 }

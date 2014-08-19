@@ -7,6 +7,7 @@
 package models.view;
 
 import utilidades.DataBaseInstance;
+import utilidades.conexionbd;
 
 /**
  *
