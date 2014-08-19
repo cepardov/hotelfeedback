@@ -50,9 +50,9 @@ public final class DataBaseInstance {
             JOptionPane.showMessageDialog(null,"La conexion no ha terminado correctamente\n"
                     + "aun conectado con codigo:\n"
                     + conn+ "\n"
-                    + "ha base de datos"+basedatos,"Resultado de Pruebas", JOptionPane.ERROR_MESSAGE);
+                    + "ha base de datos"+basedatos,"Resultado de Pruebas", JOptionPane.INFORMATION_MESSAGE);
         }else{
-            JOptionPane.showMessageDialog(null,"La conexion ha terminado con exito","Resultado de Pruebas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"La conexion ha terminado con exito","Resultado de Pruebas", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
