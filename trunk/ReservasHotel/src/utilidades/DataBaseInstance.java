@@ -1,6 +1,7 @@
 package utilidades;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import models.view.ComunicacionTest;
 
 public final class DataBaseInstance {
 
@@ -22,7 +23,7 @@ public final class DataBaseInstance {
         if (!(conn instanceof Connection)) {
             System.out.println("Conectando a la BD.");
             try {
-                Class.forName(driver);
+                Class.forName(""+driver+"");
                 conn = DriverManager.getConnection(url, usuario, contraseña);
             } catch (ClassNotFoundException se) {
                 System.out.println("Error 1:" + se);
@@ -34,6 +35,25 @@ public final class DataBaseInstance {
         }
         System.out.println(conn);
         return conn;
+    }
+    
+    public static void resultadoConexion(){
+        JOptionPane.showMessageDialog(null,"Datos de la conexión:\n"
+                + "URL:"+url+"\n"
+                + "Puerto:"+port+"\n"
+                + "Usuario:"+usuario+"\n"
+                + "Codigo:\n"+conn,"Resultado de Pruebas", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public static void resultadoDesconexion(){
+        if(conn!=null){
+            JOptionPane.showMessageDialog(null,"La conexion no ha terminado correctamente\n"
+                    + "aun conectado con codigo:\n"
+                    + conn+ "\n"
+                    + "ha base de datos"+basedatos,"Resultado de Pruebas", JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null,"La conexion ha terminado con exito","Resultado de Pruebas", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public static void closeConnection() {

@@ -19,6 +19,9 @@ public class ComunicacionTest extends javax.swing.JFrame {
      */
     public ComunicacionTest() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Pruebas de Comunicación");
+        this.btndiscbd.setEnabled(false);
     }
     protected Connection getConnection() {
         return DataBaseInstance.getInstanceConnection();
@@ -33,14 +36,22 @@ public class ComunicacionTest extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnconnbd = new javax.swing.JButton();
+        btndiscbd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Prueba de Conexión con base de datos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnconnbd.setText("Prueba de Conexión con base de datos");
+        btnconnbd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnconnbdActionPerformed(evt);
+            }
+        });
+
+        btndiscbd.setText("Prueba de Desconexión con base de datos");
+        btndiscbd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndiscbdActionPerformed(evt);
             }
         });
 
@@ -50,24 +61,37 @@ public class ComunicacionTest extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnconnbd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btndiscbd, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButton1)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addComponent(btnconnbd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btndiscbd)
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnconnbdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconnbdActionPerformed
         // TODO add your handling code here:
+        DataBaseInstance.getInstanceConnection();
+        DataBaseInstance.resultadoConexion();
+        this.btndiscbd.setEnabled(true);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnconnbdActionPerformed
+
+    private void btndiscbdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndiscbdActionPerformed
+        // TODO add your handling code here:
+        DataBaseInstance.closeConnection();
+        DataBaseInstance.resultadoDesconexion();
+    }//GEN-LAST:event_btndiscbdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,6 +129,7 @@ public class ComunicacionTest extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnconnbd;
+    public javax.swing.JButton btndiscbd;
     // End of variables declaration//GEN-END:variables
 }
