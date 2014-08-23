@@ -3,11 +3,20 @@
  * and open the template in the editor.
  */
 package models.beans;
+import models.dao.Tipodao;
+import models.entity.Tipo;
 
-/**
- *
- * @author Luis
- */
-public class Tipobeans {
+public class Tipobeans extends Tipo {
+    Tipodao tipodao=new Tipodao();
+    
+    public void save(){
+        tipodao.save(this);
+    }
+    public void delete(){
+        tipodao.delete(this);
+    }
+    public void update(){
+        tipodao.update(this);
+    }
     
 }

@@ -50,10 +50,10 @@ public class Tipodao {
         PreparedStatement saveTipo;
         try {
             saveTipo = getConnection().prepareStatement(
-                    "INSERT INTO tipo VALUES (?, ?, ?)");
+                    "INSERT INTO tipo(nombre,descripcion,precio) VALUES (?, ?, ?)");
             saveTipo.setString(1, tipo.getNombre());
             saveTipo.setString(2, tipo.getDescripcion());
-            saveTipo.setString(3, tipo.getPrecio());
+            saveTipo.setInt(3, tipo.getPrecio());
             
             
             saveTipo.executeUpdate();
@@ -72,7 +72,7 @@ public class Tipodao {
                     + "WHERE  idtipo = ?");
             saveTipo.setString(1, tipo.getNombre());
             saveTipo.setString(2, tipo.getDescripcion());
-            saveTipo.setString(3, tipo.getPrecio());
+            saveTipo.setInt(3, tipo.getPrecio());
             saveTipo.setInt(4, tipo.getIdtipo());
             saveTipo.executeUpdate();
             closeConnection();
