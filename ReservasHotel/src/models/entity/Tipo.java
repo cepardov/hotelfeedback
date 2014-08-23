@@ -8,7 +8,7 @@ public class Tipo {
     private int idtipo;
     private String nombre;
     private String descripcion;
-    private String precio;
+    private int precio;
 
     public int getIdtipo() {
         return idtipo;
@@ -34,11 +34,11 @@ public class Tipo {
         this.descripcion = descripcion;
     }
 
-    public String getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(String precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
     
