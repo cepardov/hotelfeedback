@@ -94,6 +94,7 @@ public class Usuariodao {
                 increment++;
             }
             res.close();
+            closeConnection();
             }catch(SQLException se){
                 JOptionPane.showMessageDialog(null, se);
         }
@@ -168,7 +169,7 @@ public class Usuariodao {
         }
     }
 
-    protected void closeConnection() {
+    public void closeConnection() {
         DataBaseInstance.closeConnection();
     }
 }
