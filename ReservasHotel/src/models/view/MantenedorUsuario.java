@@ -6,21 +6,34 @@
 
 package models.view;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import models.beans.Usuariobeans;
+import models.dao.Usuariodao;
 
 /**
  *
  * @author cepardov
  */
 public class MantenedorUsuario extends javax.swing.JFrame {
-
+    Usuariobeans ub=new Usuariobeans();
+    Usuariodao ud=new Usuariodao();
+    Object [][] dttipo;
+    int fila, idtipo=0;
     /**
      * Creates new form MantenedorUsuario
      */
     public MantenedorUsuario() {
         initComponents();
+        this.updateTabla();
     }
-
+    
+    private void updateTabla(){
+        String[] columNames = {"RUT","Nombre","Paterno","Materno","Teléfono","E-Mail","Privilegio","Clave"};  
+        dttipo = ud.getUsuario();
+        DefaultTableModel datos = new DefaultTableModel(dttipo,columNames);                        
+        tabla.setModel(datos);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,6 +84,11 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         });
 
         btnmodify.setText("Modificar");
+        btnmodify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodifyActionPerformed(evt);
+            }
+        });
 
         btndelete.setText("Eliminar");
 
@@ -226,6 +244,11 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -264,11 +287,6 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         String clave = this.txtpass.getText();
         String clave2 = this.txtpassre.getText();
         
-        if(clave!=clave2){
-            System.out.println("error clave");
-        }
-        
-        Usuariobeans ub=new Usuariobeans();
         ub.setRutusuario(rutusuario);
         ub.setNombre(nombre);
         ub.setPaterno(paterno);
@@ -279,7 +297,48 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         ub.setClave(clave);
         
         ub.save();
+        this.updateTabla();
     }//GEN-LAST:event_btnsaveActionPerformed
+
+    private void btnmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifyActionPerformed
+        // TODO add your handling code here:
+        String rutusuario = this.txtrut.getText();
+        String nombre = this.txtnombre.getText();
+        String paterno = this.txtpaterno.getText();
+        String materno = this.txtmateno.getText();
+        String telefono = this.txttelefono.getText();
+        String mail = this.txtemail.getText();
+        String privilegio = this.cbprivilegio.getSelectedItem().toString();
+        String clave = this.txtpass.getText();
+        String clave2 = this.txtpassre.getText();
+        
+        ub.setRutusuario(rutusuario);
+        ub.setNombre(nombre);
+        ub.setPaterno(paterno);
+        ub.setMaterno(materno);
+        ub.setTelefono(telefono);
+        ub.setMail(mail);
+        ub.setPrivilegio(privilegio);
+        ub.setClave(clave);
+        
+        ub.update();
+        this.updateTabla();
+    }//GEN-LAST:event_btnmodifyActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        fila = tabla.rowAtPoint(evt.getPoint());
+        if (fila > -1){
+            this.txtrut.setText(String.valueOf(tabla.getValueAt(fila, 0)));
+            this.txtnombre.setText(String.valueOf(tabla.getValueAt(fila, 1)));
+            this.txtpaterno.setText(String.valueOf(tabla.getValueAt(fila, 2)));
+            this.txtmateno.setText(String.valueOf(tabla.getValueAt(fila, 3)));
+            this.txttelefono.setText(String.valueOf(tabla.getValueAt(fila, 4)));
+            this.txtemail.setText(String.valueOf(tabla.getValueAt(fila, 5)));
+            this.cbprivilegio.setSelectedItem(String.valueOf(tabla.getValueAt(fila, 6)));
+            this.txtpass.setText(String.valueOf(tabla.getValueAt(fila, 7)));
+        }
+    }//GEN-LAST:event_tablaMouseClicked
 
     /**
      * @param args the command line arguments
