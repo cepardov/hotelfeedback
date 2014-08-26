@@ -1,5 +1,10 @@
 package models.entity;
 
+/**
+ * 
+ * 
+ * @author cepardov
+ */
 
 public class Usuario {
     protected String rutusuario;
