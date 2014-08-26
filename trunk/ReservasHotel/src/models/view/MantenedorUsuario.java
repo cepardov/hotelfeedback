@@ -26,6 +26,8 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     public MantenedorUsuario() {
         initComponents();
         this.updateTabla();
+        this.btnmodify.setEnabled(false);
+        this.btndelete.setEnabled(false);
     }
     
     private void updateTabla(){
@@ -33,6 +35,18 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         dttipo = ud.getUsuario();
         DefaultTableModel datos = new DefaultTableModel(dttipo,columNames);                        
         tabla.setModel(datos);
+    }
+    
+    private void clear(){
+        this.txtrut.setText("");
+        this.txtnombre.setText("");
+        this.txtpaterno.setText("");
+        this.txtmateno.setText("");
+        this.txttelefono.setText("");
+        this.txtemail.setText("");
+        this.cbprivilegio.setSelectedItem("Seleccione");
+        this.txtpass.setText("");
+        this.txtpassre.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +82,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         txtpass = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         txtpassre = new javax.swing.JPasswordField();
+        btnlimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
@@ -91,10 +106,25 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         });
 
         btndelete.setText("Eliminar");
+        btndelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeleteActionPerformed(evt);
+            }
+        });
 
         btncerrar.setText("Cerrar");
+        btncerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncerrarActionPerformed(evt);
+            }
+        });
 
         btnupdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilidades/IMG/Actualizar.png"))); // NOI18N
+        btnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdateActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("RUT");
 
@@ -124,6 +154,13 @@ public class MantenedorUsuario extends javax.swing.JFrame {
 
         jLabel9.setText("Reingrese Contraseña");
 
+        btnlimpiar.setText("Limpiar");
+        btnlimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,34 +183,28 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                                     .addComponent(jLabel7))
                                 .addGap(112, 112, 112)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(txtpassre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel6))))
+                                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(txtpassre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cbprivilegio, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txttelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtnombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cbprivilegio, javax.swing.GroupLayout.Alignment.LEADING, 0, 140, Short.MAX_VALUE)
+                                .addComponent(txttelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtnombre, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnsave)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnlimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnmodify)))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btndelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
-                                .addComponent(btnupdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btncerrar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,8 +214,16 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
                                             .addComponent(txtmateno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btndelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnupdate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btncerrar)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -229,7 +268,8 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                     .addComponent(btnmodify)
                     .addComponent(btndelete)
                     .addComponent(btncerrar)
-                    .addComponent(btnupdate))
+                    .addComponent(btnupdate)
+                    .addComponent(btnlimpiar))
                 .addContainerGap())
         );
 
@@ -298,6 +338,9 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         
         ub.save();
         this.updateTabla();
+        this.btnsave.setVisible(false);
+        this.btnmodify.setEnabled(true);
+        this.btndelete.setEnabled(true);
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void btnmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifyActionPerformed
@@ -338,7 +381,41 @@ public class MantenedorUsuario extends javax.swing.JFrame {
             this.cbprivilegio.setSelectedItem(String.valueOf(tabla.getValueAt(fila, 6)));
             this.txtpass.setText(String.valueOf(tabla.getValueAt(fila, 7)));
         }
+        this.btnmodify.setEnabled(true);
+        this.btndelete.setEnabled(true);
+        this.btnsave.setVisible(false);
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
+        // TODO add your handling code here:
+        ub.setRutusuario(this.txtrut.getText());
+        ub.delete();
+        this.clear();
+        this.updateTabla();
+        this.btnmodify.setEnabled(false);
+        this.btndelete.setEnabled(false);
+        this.btnsave.setVisible(true);
+    }//GEN-LAST:event_btndeleteActionPerformed
+
+    private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
+        // TODO add your handling code here:
+        this.updateTabla();
+    }//GEN-LAST:event_btnupdateActionPerformed
+
+    private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
+        // TODO add your handling code here:
+        this.updateTabla();
+        this.clear();
+        this.btnsave.setVisible(true);
+        this.btnmodify.setEnabled(false);
+        this.btndelete.setEnabled(false);
+    }//GEN-LAST:event_btnlimpiarActionPerformed
+
+    private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
+        // TODO add your handling code here:
+        ud.closeConnection();
+        dispose();
+    }//GEN-LAST:event_btncerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,6 +456,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnbuscarrut;
     private javax.swing.JButton btncerrar;
     private javax.swing.JButton btndelete;
+    private javax.swing.JButton btnlimpiar;
     private javax.swing.JButton btnmodify;
     private javax.swing.JButton btnsave;
     private javax.swing.JButton btnupdate;
@@ -405,3 +483,4 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 }
+
