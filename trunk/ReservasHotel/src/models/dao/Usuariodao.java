@@ -21,8 +21,8 @@ public class Usuariodao {
         Usuario usuario = null;
 
         try {
-            // Componemos la sentencia SQL para obtener los productos.
-            String query = "SELECT * FROM usuario WHERE  rutusuariousuario = ?";
+            // Componemos la sentencia SQL para obtener los USUARIO.
+            String query = "SELECT * FROM usuario WHERE  rutusuario = ?";
 
             // Ejecutamos la query y obtenemos el resultado.
             PreparedStatement stmt = getConnection().prepareStatement(query);
@@ -34,14 +34,14 @@ public class Usuariodao {
                 throw new SQLException();
             }
 
-            // Construimos una VO para el producto.
+            // Construimos una VO para el usuario.
             usuario = new Usuario();
-            usuario.setRutusuario(result.getString("rutusuariousuario"));
+            usuario.setRutusuario(result.getString("rutusuario"));
             usuario.setNombre(result.getString("nombre"));
-            usuario.setPaterno(result.getString("apellidop"));
-            usuario.setMaterno(result.getString("apellidom"));
+            usuario.setPaterno(result.getString("paterno"));
+            usuario.setMaterno(result.getString("materno"));
             usuario.setTelefono(result.getString("telefono"));
-            usuario.setMail(result.getString("email"));
+            usuario.setMail(result.getString("mail"));
             usuario.setPrivilegio(result.getString("privilegio"));
             usuario.setClave(result.getString("clave"));
 
@@ -61,36 +61,21 @@ public class Usuariodao {
 
         PreparedStatement saveUsuario;
         try {
-
-            if (usuario.getRutusuario() == null) {
-                saveUsuario = getConnection().prepareStatement(
-                        "INSERT INTO usuario (rutusuario, nombre, paterno, materno, telefono , mail, privilegio, clave) "
-                        + "VALUES (?, ?, ?, ?, ?, ?)");
-                saveUsuario.setString(1, usuario.getRutusuario());
-                saveUsuario.setString(2, usuario.getNombre());
-                saveUsuario.setString(3, usuario.getPaterno());
-                saveUsuario.setString(4, usuario.getMaterno());
-                saveUsuario.setString(5, usuario.getTelefono());
-                saveUsuario.setString(6, usuario.getMail());
-                saveUsuario.setString(7, usuario.getPrivilegio());
-                saveUsuario.setString(8, usuario.getClave());
+            saveUsuario = getConnection().prepareStatement(
+                    "INSERT INTO usuario (rutusuario, nombre, paterno, materno, telefono , mail, privilegio, clave) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            saveUsuario.setString(1, usuario.getRutusuario());
+            saveUsuario.setString(2, usuario.getNombre());
+            saveUsuario.setString(3, usuario.getPaterno());
+            saveUsuario.setString(4, usuario.getMaterno());
+            saveUsuario.setString(5, usuario.getTelefono());
+            saveUsuario.setString(6, usuario.getMail());
+            saveUsuario.setString(7, usuario.getPrivilegio());
+            saveUsuario.setString(8, usuario.getClave());
                 
-                System.out.println("INSERT INTO ....");
-            } else {
-                saveUsuario = getConnection().prepareStatement(
-                        "UPDATE productos SET rutusuario = ?, nombre = ?, paterno = ?,"
-                        + " materno = ?, telefono = ?, email = ? WHERE  rutusuario = ?");
-                saveUsuario.setString(1, usuario.getRutusuario());
-                saveUsuario.setString(2, usuario.getNombre());
-                saveUsuario.setString(3, usuario.getPaterno());
-                saveUsuario.setString(4, usuario.getMaterno());
-                saveUsuario.setString(5, usuario.getTelefono());
-                saveUsuario.setString(6, usuario.getMail());
-                saveUsuario.setString(7, usuario.getPrivilegio());
-                saveUsuario.setString(8, usuario.getClave());
-            }
-
+            System.out.println("Escribiendo en base de datos");
             saveUsuario.executeUpdate();
+            System.out.println("Listo!");
             closeConnection();
         } catch (SQLException se) {
             System.err.println("Se ha producido un error de BD.");
