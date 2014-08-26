@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import models.entity.Cliente;
 import utilidades.DataBaseInstance;
 
@@ -27,46 +28,57 @@ public class Clientedao {
          this.closeConnection();
      }
      
-     public Cliente findByRut(String clienteRut) {
-        ResultSet result = null;
-        Cliente cliente = null;
-        try {
-            String query = "SELECT * FROM  WHERE  idcliente = ?";
-            PreparedStatement stmt = getConnection().prepareStatement(query);
-            stmt.setString(1, clienteRut);
-            result = stmt.executeQuery();
-            if (!result.next()) {
-                throw new SQLException();
-            }
-            cliente = new Cliente();
-            cliente.setIdcliente(result.getString("idcliente"));
-            cliente.setNombre(result.getString("nombre"));
-            cliente.setPaterno(result.getString("paterno"));
-            cliente.setMaterno(result.getString("materno"));
-            cliente.setTelefono(result.getString("telefono"));
-            cliente.setMail(result.getString("mail"));
-            
-            result.close();
-            stmt.close();
-            closeConnection();
-        } catch (SQLException se) {
-            System.err.println("Se ha producido un error de BD.");
-            System.err.println(se.getMessage());
+    public Object [][] getCliente(){
+        int posid = 0;
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT count(1) as total FROM cliente");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            posid = res.getInt("total");
+            res.close();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
         }
-        return cliente;
+        Object[][] data = new String[posid][6];
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT idcliente, nombre, paterno, materno, telefono, mail FROM cliente");
+            ResultSet res = pstm.executeQuery();
+            int increment = 0;
+            while(res.next()){
+                
+                
+                
+                String estIdcliente = res.getString("idcliente");
+                String estNombre = res.getString("nombre");
+                String estPaterno = res.getString("paterno");
+                String estMaterno = res.getString("materno");
+                String estTelefono = res.getString("telefono");
+                String estMail = res.getString("mail");
+                data[increment][0] = estIdcliente;
+                data[increment][1] = estNombre;
+                data[increment][2] = estPaterno;
+                data[increment][3] = estMaterno;
+                data[increment][4] = estTelefono;
+                data[increment][5] = estMail;
+                increment++;
+            }
+            res.close();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+        }
+        return data;
     }
-
     public void save(Cliente cliente) {
         PreparedStatement saveCliente;
         try {
             saveCliente = getConnection().prepareStatement(
-                    "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO cliente (idcliente, nombre, paterno, materno, telefono, mail) VALUES (?, ?, ?, ?, ?, ?)");
             saveCliente.setString(1, cliente.getIdcliente());
             saveCliente.setString(2, cliente.getNombre());
             saveCliente.setString(3, cliente.getPaterno());
             saveCliente.setString(4, cliente.getMaterno());
-            saveCliente.setString(2, cliente.getTelefono());
-            saveCliente.setString(3, cliente.getMail());
+            saveCliente.setString(5, cliente.getTelefono());
+            saveCliente.setString(6, cliente.getMail());
             
             saveCliente.executeUpdate();
             closeConnection();
@@ -85,9 +97,9 @@ public class Clientedao {
             saveCliente.setString(1, cliente.getNombre());
             saveCliente.setString(2, cliente.getPaterno());
             saveCliente.setString(3, cliente.getMaterno());
-            saveCliente.setString(2, cliente.getTelefono());
-            saveCliente.setString(3, cliente.getMail());
-            saveCliente.setString(7, cliente.getIdcliente());
+            saveCliente.setString(4, cliente.getTelefono());
+            saveCliente.setString(5, cliente.getMail());
+            saveCliente.setString(6, cliente.getIdcliente());
             saveCliente.executeUpdate();
             closeConnection();
         } catch (SQLException se) {
