@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import models.entity.Usuario;
 import models.entity.Usuario;
 import utilidades.DataBaseInstance;
 /**
@@ -13,9 +15,7 @@ public class Usuariodao {
     protected Connection getConnection() {
         return DataBaseInstance.getInstanceConnection();
     }
-
- 
-
+    
     public Usuario findByRut(String usuarioRut) {
         ResultSet result = null;
         Usuario usuario = null;
@@ -56,9 +56,51 @@ public class Usuariodao {
 
         return usuario;
     }
+    
+    public Object [][] getUsuario(){
+        int posid = 0;
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT count(1) as total FROM usuario");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            posid = res.getInt("total");
+            res.close();
+            }catch(SQLException se){
+                JOptionPane.showMessageDialog(null, se);
+        }
+        Object[][] data = new String[posid][8];
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT rutusuario, nombre, paterno,"
+                    + " materno, telefono, mail, privilegio, clave FROM usuario ORDER BY paterno");
+            ResultSet res = pstm.executeQuery();
+            int increment = 0;
+            while(res.next()){
+                String estRut = res.getString("rutusuario");
+                String estNombre = res.getString("nombre");
+                String estPaterno = res.getString("paterno");
+                String estMaterno = res.getString("materno");
+                String estTelefono = res.getString("telefono");
+                String estMail = res.getString("mail");
+                String estPrivilegio = res.getString("privilegio");
+                String estClave = res.getString("clave");
+                data[increment][0] = estRut;
+                data[increment][1] = estNombre;
+                data[increment][2] = estPaterno;
+                data[increment][3] = estMaterno;
+                data[increment][4] = estTelefono;
+                data[increment][5] = estMail;
+                data[increment][6] = estPrivilegio;
+                data[increment][7] = estClave;
+                increment++;
+            }
+            res.close();
+            }catch(SQLException se){
+                JOptionPane.showMessageDialog(null, se);
+        }
+        return data;
+    }
 
     public void save(Usuario usuario) {
-
         PreparedStatement saveUsuario;
         try {
             saveUsuario = getConnection().prepareStatement(
@@ -75,7 +117,30 @@ public class Usuariodao {
                 
             System.out.println("Escribiendo en base de datos");
             saveUsuario.executeUpdate();
-            System.out.println("Listo!");
+            System.out.println("[i] Nuevo registro ok");
+            closeConnection();
+        } catch (SQLException se) {
+            System.err.println("Se ha producido un error de BD.");
+            System.err.println(se.getMessage());
+        }
+    }
+    
+    public void update(Usuario usuario) {
+        PreparedStatement saveUsuario;
+        try {
+            saveUsuario = getConnection().prepareStatement(
+                    "UPDATE usuario SET rutusuario=?, nombre=?, paterno=?, materno=?, telefono=?, mail=?, privilegio=?, clave=? WHERE  rutusuario=?");
+            saveUsuario.setString(1, usuario.getRutusuario());
+            saveUsuario.setString(2, usuario.getNombre());
+            saveUsuario.setString(3, usuario.getPaterno());
+            saveUsuario.setString(4, usuario.getMaterno());
+            saveUsuario.setString(5, usuario.getTelefono());
+            saveUsuario.setString(6, usuario.getMail());
+            saveUsuario.setString(7, usuario.getPrivilegio());
+            saveUsuario.setString(8, usuario.getClave());
+            saveUsuario.setString(9, usuario.getRutusuario());
+            saveUsuario.executeUpdate();
+            System.out.println("[i] Actualización de registro ok");
             closeConnection();
         } catch (SQLException se) {
             System.err.println("Se ha producido un error de BD.");

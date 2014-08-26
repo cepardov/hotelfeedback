@@ -14,5 +14,8 @@ public class Usuariobeans extends Usuario {
     }
     public void delete(){
         usuariodao.delete(this);
-    }    
+    }
+    public void update(){
+        usuariodao.update(this);
+    }
 }
