@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import models.entity.Tipo;
 import utilidades.DataBaseInstance;
 
@@ -18,34 +19,42 @@ public class Tipodao {
      public void disconec(){
          this.closeConnection();
      }
-     /*
-     public Tipo findAll(String tipo) {
-        ResultSet result = null;
-        Tipo tipo = null;
-        try {
-            String query = "SELECT * FROM  WHERE  idtipo = ?";
-            PreparedStatement stmt = getConnection().prepareStatement(query);
-            stmt.setInt(1, tipo);
-            result = stmt.executeQuery();
-            if (!result.next()) {
-                throw new SQLException();
-            }
-            tipo = new Tipo();
-            tipo.setIdtipo(result.getInt("idtipo"));
-            tipo.setNombre(result.getString("nombre"));
-            tipo.setDescripcion(result.getString("paterno"));
-            tipo.setPrecio(result.getString("materno"));
-                     
-            result.close();
-            stmt.close();
-            closeConnection();
-        } catch (SQLException se) {
-            System.err.println("Se ha producido un error de BD.");
-            System.err.println(se.getMessage());
+     public Object [][] getTipo(){
+        int posid = 0;
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT count(1) as total FROM tipo");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            posid = res.getInt("total");
+            res.close();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
         }
-        return tipo;
+        Object[][] data = new String[posid][6];
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT idtipo, nombre, descripcion, precio FROM tipo ORDER BY idtipo");
+            ResultSet res = pstm.executeQuery();
+            int increment = 0;
+            while(res.next()){
+                
+                
+                
+                String estIdtipo = Integer.toString(res.getInt("idtipo"));
+                String estNombre = res.getString("nombre");
+                String estDescripcion = res.getString("descripcion");
+                String estPrecio = Integer.toString(res.getInt("precio"));
+                data[increment][0] = estIdtipo;
+                data[increment][1] = estNombre;
+                data[increment][2] = estDescripcion;
+                data[increment][3] = estPrecio;
+                increment++;
+            }
+            res.close();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+        }
+        return data;
     }
-    */
     public void save(Tipo tipo) {
         PreparedStatement saveTipo;
         try {
@@ -68,8 +77,7 @@ public class Tipodao {
         PreparedStatement saveTipo;
         try {
             saveTipo = getConnection().prepareStatement(
-                 "UPDATE tipo SET nombre = ?, descripcion = ?, precio = ?, "
-                    + "WHERE  idtipo = ?");
+                 "UPDATE tipo SET nombre = ?, descripcion = ?, precio = ? WHERE  idtipo = ?");
             saveTipo.setString(1, tipo.getNombre());
             saveTipo.setString(2, tipo.getDescripcion());
             saveTipo.setInt(3, tipo.getPrecio());
