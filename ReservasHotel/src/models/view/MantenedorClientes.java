@@ -3,10 +3,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import models.beans.Clientebeans;
 import models.dao.Clientedao;
-/**
- *
- * @author cepardov
- */
+
+
 public class MantenedorClientes extends javax.swing.JFrame {
     Clientebeans c=new Clientebeans();
     Clientedao cl=new Clientedao();
