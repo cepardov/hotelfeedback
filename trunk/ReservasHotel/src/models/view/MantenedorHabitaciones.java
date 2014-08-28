@@ -14,22 +14,37 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import models.beans.Habitacionbeans;
+import models.dao.Habitaciondao;
 
 /**
  *
  * @author cepardov
  */
 public class MantenedorHabitaciones extends javax.swing.JFrame {
+    Habitacionbeans hb=new Habitacionbeans();
+    Habitaciondao hd=new Habitaciondao();
     private FileInputStream fis;
     private int longitudBytes;
+    Object [][] dttipo;
+    int fila, idtipo=0;
     int NumeroHabitacion=5, NumeroPiso=6;
     /**
      * Creates new form MantenedorHabitaciones
      */
     public MantenedorHabitaciones() {
         initComponents();
+        this.updateTabla();
         this.jsNumero.setModel(new javax.swing.SpinnerNumberModel(0, 0, this.NumeroHabitacion, 1));
         this.jsPiso.setModel(new javax.swing.SpinnerNumberModel(0, 0, this.NumeroPiso, 1));
+    }
+    
+    private void updateTabla(){
+        String[] columNames = {"Num. Habitación","Nivel","Tipo","Descripcion"};  
+        dttipo = hd.getHabitaciones();
+        DefaultTableModel datos = new DefaultTableModel(dttipo,columNames);                        
+        tabla.setModel(datos);
     }
 
     /**
@@ -60,13 +75,18 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         txtDescripcion = new javax.swing.JTextField();
         btnreset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Habitaciones"));
 
         btnsave.setText("Guardar");
+        btnsave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsaveActionPerformed(evt);
+            }
+        });
 
         btnmodify.setText("Modificar");
 
@@ -85,7 +105,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
 
         jLabel4.setText("Descripcion");
 
-        cbtipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione" }));
+        cbtipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "1" }));
 
         lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -162,7 +182,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbtipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
@@ -201,7 +221,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
 
         lblFoto.getAccessibleContext().setAccessibleDescription("Cargar Imangen");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -212,7 +232,12 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,6 +291,30 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btncerrarActionPerformed
 
+    private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
+        // TODO add your handling code here:
+        int idhabitacion=Integer.parseInt(this.jsNumero.getValue().toString());
+        int piso=Integer.parseInt(this.jsPiso.getValue().toString());
+        int idtipo=this.cbtipo.getSelectedIndex();
+        String descripcion=this.txtDescripcion.getText();
+        
+        hb.setIdhabitacion(idhabitacion);
+        hb.setPiso(piso);
+        hb.setIdtipo(idtipo);
+        hb.setDescripcion(descripcion);
+        hb.setFoto(this.fis);
+        
+        hb.save();
+    }//GEN-LAST:event_btnsaveActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        fila = tabla.rowAtPoint(evt.getPoint());
+        if (fila > -1){
+            
+        }
+    }//GEN-LAST:event_tablaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -317,10 +366,10 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JSpinner jsNumero;
     private javax.swing.JSpinner jsPiso;
     private javax.swing.JLabel lblFoto;
+    private javax.swing.JTable tabla;
     private javax.swing.JTextField txtDescripcion;
     // End of variables declaration//GEN-END:variables
 }
