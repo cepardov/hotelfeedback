@@ -59,6 +59,35 @@ public class Habitaciondao {
         }
         return data;
     }
+     
+     public Object [][] getFotoHabitacion(int idhabitacion){
+        int posid = 0;
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT count(1) as total FROM habitacion");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            posid = res.getInt("total");
+            res.close();
+            }catch(SQLException se){
+                JOptionPane.showMessageDialog(null, se);
+        }
+        Object[][] data = new String[posid][1];
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT foto FROM habitacion WHERE idhabitacion="+idhabitacion);
+            ResultSet res = pstm.executeQuery();
+            int increment = 0;
+            while(res.next()){
+                String estFoto = res.getString("foto");
+                data[increment][0] = estFoto;
+                increment++;
+            }
+            res.close();
+            closeConnection();
+            }catch(SQLException se){
+                JOptionPane.showMessageDialog(null, se);
+        }
+        return data;
+    }
 
     public void save(Habitacion habitacion) {
         PreparedStatement saveHabitacion;
