@@ -29,7 +29,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     private int longitudBytes;
     Object [][] dttipo;
     int fila, idtipo=0;
-    int NumeroHabitacion=5, NumeroPiso=6;
+    int NumeroHabitacion=5, NumeroPiso=6, idhab;
     /**
      * Creates new form MantenedorHabitaciones
      */
@@ -311,7 +311,11 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
         fila = tabla.rowAtPoint(evt.getPoint());
         if (fila > -1){
-            
+            this.jsNumero.setValue(String.valueOf(tabla.getValueAt(fila, 0)));
+            this.jsPiso.setValue(String.valueOf(tabla.getValueAt(fila, 1)));
+            this.cbtipo.setSelectedIndex(Integer.parseInt(String.valueOf(tabla.getValueAt(fila, 2))));
+            this.txtDescripcion.setText(String.valueOf(tabla.getValueAt(fila, 3)));
+            //fis =  new FileInputStream(hd.getFotoHabitacion(Integer.parseInt(valueOf(tabla.getValueAt(fila, 0)))));
         }
     }//GEN-LAST:event_tablaMouseClicked
 
