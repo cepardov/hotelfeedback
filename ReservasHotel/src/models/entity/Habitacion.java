@@ -1,15 +1,17 @@
 package models.entity;
 
+import java.io.FileInputStream;
+
 /**
  *
  * @author Luis
  */
 public class Habitacion {
     private int idhabitacion;
-    private String piso;
+    private int piso;
     private int idtipo;
     private String descripcion;
-    private String foto;
+    private FileInputStream foto;
 
     public int getIdhabitacion() {
         return idhabitacion;
@@ -19,11 +21,11 @@ public class Habitacion {
         this.idhabitacion = idhabitacion;
     }
 
-    public String getPiso() {
+    public int getPiso() {
         return piso;
     }
 
-    public void setPiso(String piso) {
+    public void setPiso(int piso) {
         this.piso = piso;
     }
 
@@ -43,11 +45,11 @@ public class Habitacion {
         this.descripcion = descripcion;
     }
 
-    public String getFoto() {
+    public FileInputStream getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(FileInputStream foto) {
         this.foto = foto;
     }
     
