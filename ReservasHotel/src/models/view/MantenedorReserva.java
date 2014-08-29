@@ -131,6 +131,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
             }
         });
 
+        jFormattedTextField1.setEditable(false);
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Inicio de Reserva"));
@@ -254,7 +255,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -313,7 +314,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
                         .addComponent(txtrut3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton18)
-                        .addGap(0, 145, Short.MAX_VALUE)))
+                        .addGap(0, 152, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(

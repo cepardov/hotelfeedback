@@ -125,7 +125,8 @@ public class Habitaciondao {
             saveHabitacion.setInt(2, habitacion.getPiso());
             saveHabitacion.setInt(3, habitacion.getIdtipo());
             saveHabitacion.setString(4, habitacion.getDescripcion());
-            saveHabitacion.setBlob(2, habitacion.getFoto());
+            saveHabitacion.setBlob(5, habitacion.getFoto());
+            saveHabitacion.setInt(6, habitacion.getIdhabitacion());
             saveHabitacion.executeUpdate();
             closeConnection();
         } catch (SQLException se) {
