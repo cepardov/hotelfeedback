@@ -4,6 +4,9 @@ import models.entity.Habitacion;
 public class Habitacionbeans extends Habitacion{
     private Habitaciondao habitaciondao = new Habitaciondao();
     
+    public void contar(){
+        habitaciondao.pisomaximo(this);
+    }
     public void save(){
         habitaciondao.save(this);
     }

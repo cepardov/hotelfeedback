@@ -32,6 +32,22 @@ public class Habitaciondao {
          this.closeConnection();
      }
      
+     public void pisomaximo(Habitacion habitacion){
+               
+         try{
+            PreparedStatement pstm = getConnection().prepareStatement("select max(idhabitacion), max(piso) from HABITACION");
+          
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            habitacion.setIdhabitacion(res.getInt("1"));
+            habitacion.setPiso(res.getInt("2"));
+            res.close();
+            
+            }catch(SQLException se){
+                JOptionPane.showMessageDialog(null, se);
+            }
+          
+     }
      public Object [][] getHabitaciones(){
         int posid = 0;
         try{
@@ -45,7 +61,7 @@ public class Habitaciondao {
         }
         Object[][] data = new String[posid][5];
         try{
-            PreparedStatement pstm = getConnection().prepareStatement("SELECT idhabitacion, piso, idtipo, descripcion, foto FROM habitacion ORDER BY idhabitacion");
+            PreparedStatement pstm = getConnection().prepareStatement("select idhabitacion, piso,idtipo, descripcion, foto from HABITACION ORDER BY idhabitacion");
             ResultSet res = pstm.executeQuery();
             int increment = 0;
             while(res.next()){
