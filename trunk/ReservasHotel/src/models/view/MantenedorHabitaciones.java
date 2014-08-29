@@ -29,7 +29,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     private FileInputStream fis;
     private int longitudBytes;
     Object [][] dttipo;
-    int idhabi;
+    //int idhabi;
     int fila, idtipo=0;
     int NumeroHabitacion=5, NumeroPiso=6, idhab;
     /**
@@ -91,8 +91,18 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         });
 
         btnmodify.setText("Modificar");
+        btnmodify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodifyActionPerformed(evt);
+            }
+        });
 
         btndelete.setText("Eliminar");
+        btndelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeleteActionPerformed(evt);
+            }
+        });
 
         btncerrar.setText("Cerrar");
         btncerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -307,6 +317,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         hb.setFoto(this.fis);
         
         hb.save();
+        this.updateTabla();
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
@@ -328,6 +339,30 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         }
         lblFoto.updateUI();
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void btnmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifyActionPerformed
+        // TODO add your handling code here:
+        int idhabitacion=this.idhab;
+        int piso=Integer.parseInt(this.jsPiso.getValue().toString());
+        int idtipo=this.cbtipo.getSelectedIndex();
+        String descripcion=this.txtDescripcion.getText();
+        
+        hb.setIdhabitacion(idhabitacion);
+        hb.setPiso(piso);
+        hb.setIdtipo(idtipo);
+        hb.setDescripcion(descripcion);
+        hb.setFoto(this.fis);
+        
+        hb.update();
+        this.updateTabla();
+    }//GEN-LAST:event_btnmodifyActionPerformed
+
+    private void btndeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeleteActionPerformed
+        // TODO add your handling code here:
+        hb.setIdhabitacion(this.idhab);
+        hb.delete();
+        this.updateTabla();
+    }//GEN-LAST:event_btndeleteActionPerformed
 
     /**
      * @param args the command line arguments
