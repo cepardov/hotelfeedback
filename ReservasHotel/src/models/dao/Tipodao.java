@@ -19,20 +19,35 @@ public class Tipodao {
      public void disconec(){
          this.closeConnection();
      }
-      public void pisomaximo(Tipo tipo){
+      public Object[][] buscarnombre(Tipo tipo){
                
-         try{
-            PreparedStatement pstm = getConnection().prepareStatement("select nombre from tipo");
+         int posid = 0;
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT count(1) as total FROM tipo");
             ResultSet res = pstm.executeQuery();
-            while (res.next()) {
-                tipo.setNombre(res.getString("nombre"));
+            res.next();
+            posid = res.getInt("total");
+            res.close();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+        }
+        Object[][] data = new String[posid][1];
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT nombre FROM tipo");
+            ResultSet res = pstm.executeQuery();
+            int increment = 0;
+            while(res.next()){
+                String estNombre = res.getString("nombre");
+                data[increment][0] = estNombre;
+               
+                increment++;
             }
-            res.close();            
-            }catch(SQLException se){
-                JOptionPane.showMessageDialog(null, se);
-            }
-          
-     }
+            res.close();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+        }
+        return data;
+    }
      public Object [][] getTipo(){
         int posid = 0;
         try{

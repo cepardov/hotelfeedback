@@ -11,13 +11,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import models.beans.Habitacionbeans;
-import models.beans.Tipobeans;
 import models.dao.Habitaciondao;
+import models.dao.Tipodao;
 import utilidades.CustomImageIcon;
 
 /**
@@ -25,7 +26,7 @@ import utilidades.CustomImageIcon;
  * @author cepardov
  */
 public class MantenedorHabitaciones extends javax.swing.JFrame {
-    Tipobeans ti=new Tipobeans();
+    Tipodao ti=new Tipodao();
     Habitacionbeans hb=new Habitacionbeans();
     Habitaciondao hd=new Habitaciondao();
     private FileInputStream fis;
@@ -40,11 +41,10 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     public MantenedorHabitaciones() {
         initComponents();
         this.updateTabla();
-        hb.contar();
         this.jsNumero.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         this.jsPiso.setModel(new javax.swing.SpinnerNumberModel(0, 0,100, 1));
         
-    
+       
     }
     
     private void updateTabla(){
