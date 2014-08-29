@@ -8,7 +8,9 @@ import models.entity.Tipo;
 
 public class Tipobeans extends Tipo {
     Tipodao tipodao=new Tipodao();
-    
+    public void buscarnombres(){
+        tipodao.buscarnombre(this);
+    }
     public void save(){
         tipodao.save(this);
     }
