@@ -1,13 +1,22 @@
 package models.dao;
 
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import models.entity.Habitacion;
+import utilidades.CustomImageIcon;
 import utilidades.DataBaseInstance;
 
 
@@ -60,33 +69,30 @@ public class Habitaciondao {
         return data;
     }
      
-     public Object [][] getFotoHabitacion(int idhabitacion){
-        int posid = 0;
-        try{
-            PreparedStatement pstm = getConnection().prepareStatement("SELECT count(1) as total FROM habitacion");
-            ResultSet res = pstm.executeQuery();
-            res.next();
-            posid = res.getInt("total");
-            res.close();
-            }catch(SQLException se){
-                JOptionPane.showMessageDialog(null, se);
+     public static CustomImageIcon getFoto(int id){
+         CustomImageIcon ii = null;
+         InputStream is = null;
+         try {
+            Connection conexion = DataBaseInstance.getInstanceConnection();
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery("SELECT foto FROM habitacion WHERE idhabitacion = 1");
+            if(rs.next()){
+               is = rs.getBinaryStream(1);
+               if(is != null){
+                   BufferedImage bi = ImageIO.read(is);
+                   ii = new CustomImageIcon(bi);
+               }
+               
+           }
+            rs.close();
+            conexion.close();
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Habitaciondao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Object[][] data = new String[posid][1];
-        try{
-            PreparedStatement pstm = getConnection().prepareStatement("SELECT foto FROM habitacion WHERE idhabitacion="+idhabitacion);
-            ResultSet res = pstm.executeQuery();
-            int increment = 0;
-            while(res.next()){
-                String estFoto = res.getString("foto");
-                data[increment][0] = estFoto;
-                increment++;
-            }
-            res.close();
-            closeConnection();
-            }catch(SQLException se){
-                JOptionPane.showMessageDialog(null, se);
-        }
-        return data;
+        
+        return ii;
     }
 
     public void save(Habitacion habitacion) {
