@@ -16,6 +16,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import models.beans.Habitacionbeans;
+import models.beans.Tipobeans;
 import models.dao.Habitaciondao;
 import utilidades.CustomImageIcon;
 
@@ -24,6 +25,7 @@ import utilidades.CustomImageIcon;
  * @author cepardov
  */
 public class MantenedorHabitaciones extends javax.swing.JFrame {
+    Tipobeans ti=new Tipobeans();
     Habitacionbeans hb=new Habitacionbeans();
     Habitaciondao hd=new Habitaciondao();
     private FileInputStream fis;
@@ -39,10 +41,10 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         initComponents();
         this.updateTabla();
         hb.contar();
-        NumeroHabitacion = hb.getIdhabitacion();
-        NumeroPiso = hb.getPiso();
-        this.jsNumero.setModel(new javax.swing.SpinnerNumberModel(0, 0, this.NumeroHabitacion, 1));
-        this.jsPiso.setModel(new javax.swing.SpinnerNumberModel(0, 0, this.NumeroPiso, 1));
+        this.jsNumero.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
+        this.jsPiso.setModel(new javax.swing.SpinnerNumberModel(0, 0,100, 1));
+        
+    
     }
     
     private void updateTabla(){
