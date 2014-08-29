@@ -75,7 +75,7 @@ public class Habitaciondao {
          try {
             Connection conexion = DataBaseInstance.getInstanceConnection();
             Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery("SELECT foto FROM habitacion WHERE idhabitacion = 1");
+            ResultSet rs = st.executeQuery("SELECT foto FROM habitacion WHERE idhabitacion = "+id);
             if(rs.next()){
                is = rs.getBinaryStream(1);
                if(is != null){
@@ -85,7 +85,8 @@ public class Habitaciondao {
                
            }
             rs.close();
-            conexion.close();
+            //conexion.close();
+            DataBaseInstance.closeConnection();
         } catch (SQLException ex) {
              System.out.println(ex);
         } catch (IOException ex) {
