@@ -110,7 +110,7 @@ public class Habitaciondao {
         PreparedStatement saveHabitacion;
         try {
             saveHabitacion = getConnection().prepareStatement(
-                    "INSERT INTO habitacion VALUES (?, ?, ?, ?, ?)");
+                    "INSERT INTO habitacion(numerohabitacion,piso,idtipo,descripcion,foto) VALUES (?, ?, ?, ?, ?)");
             saveHabitacion.setInt(1, habitacion.getIdhabitacion());
             saveHabitacion.setInt(2, habitacion.getPiso());
             saveHabitacion.setInt(3, habitacion.getIdtipo());
