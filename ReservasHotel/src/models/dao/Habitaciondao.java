@@ -1,12 +1,9 @@
 package models.dao;
 
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,12 +25,12 @@ public class Habitaciondao {
      public void conect(){
          this.getConnection();
      }
+     
      public void disconec(){
          this.closeConnection();
      }
      
-     public void pisomaximo(Habitacion habitacion){
-               
+     public void pisomaximo(Habitacion habitacion){   
          try{
             PreparedStatement pstm = getConnection().prepareStatement("select max(idhabitacion), max(piso) from HABITACION");
           
@@ -46,7 +43,6 @@ public class Habitaciondao {
             }catch(SQLException se){
                 JOptionPane.showMessageDialog(null, se);
             }
-          
      }
      public Object [][] getHabitaciones(){
         int posid = 0;
@@ -101,14 +97,12 @@ public class Habitaciondao {
                
            }
             rs.close();
-            //conexion.close();
             DataBaseInstance.closeConnection();
         } catch (SQLException ex) {
              System.out.println(ex);
         } catch (IOException ex) {
             Logger.getLogger(Habitaciondao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return ii;
     }
 
