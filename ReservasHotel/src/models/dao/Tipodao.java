@@ -19,6 +19,20 @@ public class Tipodao {
      public void disconec(){
          this.closeConnection();
      }
+      public void pisomaximo(Tipo tipo){
+               
+         try{
+            PreparedStatement pstm = getConnection().prepareStatement("select nombre from tipo");
+            ResultSet res = pstm.executeQuery();
+            while (res.next()) {
+                tipo.setNombre(res.getString("nombre"));
+            }
+            res.close();            
+            }catch(SQLException se){
+                JOptionPane.showMessageDialog(null, se);
+            }
+          
+     }
      public Object [][] getTipo(){
         int posid = 0;
         try{
