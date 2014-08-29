@@ -6,13 +6,11 @@
 
 package models.view;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import utilidades.DataBaseInstance;
 
 /**
  *
@@ -24,7 +22,44 @@ public class MantenedorReserva extends javax.swing.JFrame {
      */
     public MantenedorReserva() {
         initComponents();
+        this.getComboTipo();
     }
+    //trabajando en combo box
+    public void getComboTipo(){
+         try{
+            DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+            Connection conexion = DataBaseInstance.getInstanceConnection();
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM tipo ORDER BY idtipo");
+            modeloCombo.addElement("Seleccione");
+            while (rs.next()) {
+                modeloCombo.addElement(rs.getObject("nombre"));
+            }
+            rs.close();
+            cbtipo.setModel(modeloCombo);
+            DataBaseInstance.closeConnection();
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        }
+     }
+    
+    public void getComboHabitacion(){
+         try{
+            DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+            Connection conexion = DataBaseInstance.getInstanceConnection();
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM tipo ORDER BY idtipo");
+            modeloCombo.addElement("Seleccione");
+            while (rs.next()) {
+                modeloCombo.addElement(rs.getObject("nombre"));
+            }
+            rs.close();
+            cbtipo.setModel(modeloCombo);
+            DataBaseInstance.closeConnection();
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        }
+     }
     
 
     /**
@@ -58,7 +93,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
         jSpinner2 = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox();
+        cbtipo = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
         jComboBox6 = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
@@ -208,7 +243,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo Habitación");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Tipo1" }));
+        cbtipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Tipo1" }));
 
         jLabel13.setText("Habitación");
 
@@ -234,7 +269,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox6, 0, 178, Short.MAX_VALUE)
-                            .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +281,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -561,11 +596,11 @@ public class MantenedorReserva extends javax.swing.JFrame {
     private javax.swing.JButton btnmodify;
     private javax.swing.JButton btnsave;
     private javax.swing.JButton btnupdate;
+    private javax.swing.JComboBox cbtipo;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JComboBox jComboBox6;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
