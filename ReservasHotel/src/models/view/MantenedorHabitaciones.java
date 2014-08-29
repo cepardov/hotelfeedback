@@ -31,13 +31,16 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     Object [][] dttipo;
     //int idhabi;
     int fila, idtipo=0;
-    int NumeroHabitacion=5, NumeroPiso=6, idhab;
+    int NumeroHabitacion=0, NumeroPiso=0, idhab;
     /**
      * Creates new form MantenedorHabitaciones
      */
     public MantenedorHabitaciones() {
         initComponents();
         this.updateTabla();
+        hb.contar();
+        NumeroHabitacion = hb.getIdhabitacion();
+        NumeroPiso = hb.getPiso();
         this.jsNumero.setModel(new javax.swing.SpinnerNumberModel(0, 0, this.NumeroHabitacion, 1));
         this.jsPiso.setModel(new javax.swing.SpinnerNumberModel(0, 0, this.NumeroPiso, 1));
     }
@@ -327,7 +330,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
             this.idhab=Integer.parseInt(String.valueOf(tabla.getValueAt(fila, 0)));
             //this.jsNumero.setValue(String.valueOf(tabla.getValueAt(fila, 0)));
             //this.jsPiso.setValue(String.valueOf(tabla.getValueAt(fila, 1)));
-            this.cbtipo.setSelectedIndex(Integer.parseInt(String.valueOf(tabla.getValueAt(fila, 2))));
+            this.cbtipo.setSelectedItem(String.valueOf(tabla.getValueAt(fila, 2)));
             this.txtDescripcion.setText(String.valueOf(tabla.getValueAt(fila, 3)));
         }
         CustomImageIcon foto = Habitaciondao.getFoto(this.idhab);
