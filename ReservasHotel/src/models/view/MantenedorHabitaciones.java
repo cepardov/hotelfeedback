@@ -17,6 +17,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import models.beans.Habitacionbeans;
 import models.dao.Habitaciondao;
+import utilidades.CustomImageIcon;
 
 /**
  *
@@ -311,12 +312,17 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
         fila = tabla.rowAtPoint(evt.getPoint());
         if (fila > -1){
-            this.jsNumero.setValue(String.valueOf(tabla.getValueAt(fila, 0)));
-            this.jsPiso.setValue(String.valueOf(tabla.getValueAt(fila, 1)));
+            //this.jsNumero.setValue(String.valueOf(tabla.getValueAt(fila, 0)));
+            //this.jsPiso.setValue(String.valueOf(tabla.getValueAt(fila, 1)));
             this.cbtipo.setSelectedIndex(Integer.parseInt(String.valueOf(tabla.getValueAt(fila, 2))));
             this.txtDescripcion.setText(String.valueOf(tabla.getValueAt(fila, 3)));
-            //fis =  new FileInputStream(hd.getFotoHabitacion(Integer.parseInt(valueOf(tabla.getValueAt(fila, 0)))));
         }
+        CustomImageIcon foto = Habitaciondao.getFoto(1);
+        if(foto!=null)
+        {
+           this.lblFoto.setIcon(foto);
+        }
+        lblFoto.updateUI();
     }//GEN-LAST:event_tablaMouseClicked
 
     /**
