@@ -36,7 +36,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     private int longitudBytes;
     Object [][] dttipo;
     int fila, idtipo=0;
-    int NumeroHabitacion=20, NumeroPiso=50, idhab;
+    int idhab;
     /**
      * Creates new form MantenedorHabitaciones
      */
@@ -44,10 +44,6 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         initComponents();
         this.updateTabla();
         this.getComboTipo();
-        this.jsNumero.setModel(new javax.swing.SpinnerNumberModel(0, 0, NumeroPiso, 1));
-        this.jsPiso.setModel(new javax.swing.SpinnerNumberModel(0, 0,NumeroHabitacion, 1));
-        
-       
     }
     
     public void getComboTipo(){
@@ -96,9 +92,9 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         lblFoto = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jsNumero = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
-        jsPiso = new javax.swing.JSpinner();
+        cbpiso = new javax.swing.JComboBox();
+        cbnumero = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         btnreset = new javax.swing.JButton();
@@ -143,6 +139,12 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
 
         jLabel4.setText("Descripcion");
 
+        cbtipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbtipoItemStateChanged(evt);
+            }
+        });
+
         lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         lblFoto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -157,19 +159,24 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
 
         jLabel6.setText("Nivel");
 
+        cbpiso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
+
+        cbnumero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jsPiso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jsNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addComponent(jLabel1)
+                .addGap(23, 23, 23))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(cbpiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cbnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -181,8 +188,8 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jsPiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jsNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbpiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -208,33 +215,28 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
                                 .addComponent(btndelete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnreset)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnUpdate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btncerrar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3)
-                            .addComponent(cbtipo, 0, 190, Short.MAX_VALUE)
+                            .addComponent(cbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addGap(125, 125, 125))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(125, 243, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -246,7 +248,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -334,8 +336,8 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
-        int idhabitacion=Integer.parseInt(this.jsNumero.getValue().toString());
-        int piso=Integer.parseInt(this.jsPiso.getValue().toString());
+        int idhabitacion=Integer.parseInt(this.cbnumero.getSelectedItem().toString());
+        int piso=Integer.parseInt(this.cbpiso.getSelectedItem().toString());
         int idtipo=this.cbtipo.getSelectedIndex();
         String descripcion=this.txtDescripcion.getText();
         
@@ -354,9 +356,9 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         fila = tabla.rowAtPoint(evt.getPoint());
         if (fila > -1){
             this.idhab=Integer.parseInt(String.valueOf(tabla.getValueAt(fila, 0)));
-            //this.jsNumero.setValue(String.valueOf(tabla.getValueAt(fila, 0)));
-            //this.jsPiso.setValue(String.valueOf(tabla.getValueAt(fila, 1)));
-            this.cbtipo.setSelectedItem(String.valueOf(tabla.getValueAt(fila, 2)));
+            this.cbnumero.setSelectedItem(String.valueOf(tabla.getValueAt(fila, 0)));
+            this.cbpiso.setSelectedItem(String.valueOf(tabla.getValueAt(fila, 1)));
+            this.cbtipo.setSelectedIndex(Integer.parseInt(String.valueOf(tabla.getValueAt(fila, 2))));
             this.txtDescripcion.setText(String.valueOf(tabla.getValueAt(fila, 3)));
         }
         CustomImageIcon foto = Habitaciondao.getFoto(this.idhab);
@@ -372,7 +374,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     private void btnmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifyActionPerformed
         // TODO add your handling code here:
         int idhabitacion=this.idhab;
-        int piso=Integer.parseInt(this.jsPiso.getValue().toString());
+        int piso=Integer.parseInt(this.cbpiso.getSelectedItem().toString());
         int idtipo=this.cbtipo.getSelectedIndex();
         String descripcion=this.txtDescripcion.getText();
         
@@ -392,6 +394,11 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         hb.delete();
         this.updateTabla();
     }//GEN-LAST:event_btndeleteActionPerformed
+
+    private void cbtipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbtipoItemStateChanged
+        // TODO add your handling code here:
+        System.out.println("valor:"+this.cbtipo.getSelectedIndex()+" "+this.cbtipo.getSelectedItem().toString());
+    }//GEN-LAST:event_cbtipoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -435,6 +442,8 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     private javax.swing.JButton btnmodify;
     private javax.swing.JButton btnreset;
     private javax.swing.JButton btnsave;
+    private javax.swing.JComboBox cbnumero;
+    private javax.swing.JComboBox cbpiso;
     private javax.swing.JComboBox cbtipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -444,8 +453,6 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jsNumero;
-    private javax.swing.JSpinner jsPiso;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtDescripcion;
