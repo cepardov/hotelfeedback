@@ -83,6 +83,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtpassre = new javax.swing.JPasswordField();
         btnlimpiar = new javax.swing.JButton();
+        jpTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
@@ -271,6 +272,8 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jpTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Usuarios"));
+
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -289,6 +292,17 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
+        javax.swing.GroupLayout jpTablaLayout = new javax.swing.GroupLayout(jpTabla);
+        jpTabla.setLayout(jpTablaLayout);
+        jpTablaLayout.setHorizontalGroup(
+            jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jpTablaLayout.setVerticalGroup(
+            jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -297,7 +311,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -306,8 +320,8 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(jpTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -446,13 +460,13 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbuscarrut;
+    public javax.swing.JButton btnbuscarrut;
     private javax.swing.JButton btncerrar;
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JButton btnmodify;
     private javax.swing.JButton btnsave;
-    private javax.swing.JButton btnupdate;
+    public javax.swing.JButton btnupdate;
     public javax.swing.JComboBox cbprivilegio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -465,7 +479,8 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabla;
+    public javax.swing.JPanel jpTabla;
+    public javax.swing.JTable tabla;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtmateno;
     private javax.swing.JTextField txtnombre;

@@ -17,6 +17,9 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+    }
+    public Menu(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
+        initComponents();
         this.setLocationRelativeTo(null);
         this.btn5.setVisible(false);
         this.btn6.setVisible(false);

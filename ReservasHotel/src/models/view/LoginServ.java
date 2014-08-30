@@ -6,7 +6,11 @@
 
 package models.view;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import models.dao.Usuariodao;
+import utilidades.Usuario;
 
 /**
  *
@@ -14,6 +18,7 @@ import models.dao.Usuariodao;
  */
 public class LoginServ extends javax.swing.JFrame {
     Usuariodao ud=new Usuariodao();
+    int intentos=3;
     String googlecode="http://code.google.com/p/hotelfeedback";
     String version="V1.0 r00";
     String developers="Pablo Santana, Cristian Pardo";
@@ -29,7 +34,46 @@ public class LoginServ extends javax.swing.JFrame {
         this.comprobarUsuario();
     }
     
-    public final void comprobarUsuario(){
+    public void Error(){
+        dispose();
+    }
+    
+    private void loginAction(){
+        if (intentos==0){
+            dispose();
+            JOptionPane.showMessageDialog(null, "Inicio de sesión denegado!\nContacte con administrador del sistema...", "Error de Inicio de sesión.", JOptionPane.ERROR_MESSAGE);
+        }else if(this.txtrut.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nombre de usuario no es indicado.\nIngrese su nombre de usuario y contraseña para ingresar al sistema.", "Error de Inicio de sesión.", JOptionPane.ERROR_MESSAGE);
+        } else if (this.txtpass.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Contraseña no es indicado.\nIngrese su contraseña y nombre de usuario para ingresar al sistema.", "Error de Inicio de sesión.", JOptionPane.WARNING_MESSAGE);
+        } else {
+            //Extrae información ingresada
+            String usuario=this.txtrut.getText();
+            String clave=this.txtpass.getText();
+            
+            System.out.println(usuario+" "+clave);
+            
+            Usuario u;
+            u = new Usuario();
+            u=u.verificarUsuario(usuario, clave);
+            
+            if(u==null){
+                intentos=intentos-1;
+                System.out.println("Error inicio de sesión");
+                JOptionPane.showMessageDialog(this, "El nombre de usuario y/o contraseña no son validos.\nIntentos restantes "+intentos);
+            }else if(u!=null){
+                Menu m=new Menu();
+//                Escritorio es=new Escritorio(u.getNombre(),u.getApellido(),u.getUsuario());
+                m.setState(JFrame.MAXIMIZED_BOTH);
+                m.setTitle(u.getNombre()+" "+u.getPaterno());
+                m.setLocationRelativeTo(null);
+                m.setVisible(true);
+                dispose();
+            }
+        }
+    }
+    
+    protected final void comprobarUsuario(){
         System.out.println("Comprobando si existen usuarios en base de datos...");
         if(ud.getUserCount()==0){
             MantenedorUsuario mu=new MantenedorUsuario();
@@ -38,6 +82,12 @@ public class LoginServ extends javax.swing.JFrame {
             mu.setAlwaysOnTop(true);
             mu.cbprivilegio.setSelectedItem("Administrador");
             mu.cbprivilegio.setEnabled(false);
+            mu.btnbuscarrut.setEnabled(false);
+            mu.jpTabla.setVisible(false);
+            mu.btnupdate.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Bienvenido a FeedBack \"Gestión Hotelera de Reservas\" \n"
+                    + "Es la primera vez que inicia la aplicación, en seguida aparecerá el ingreso del primer usuario \n"
+                    + "la cual aparecerá solo una vez quien tendrá como usuario predeterminado de administración del sistema.", "Primer Inicio del Sistema", JOptionPane.INFORMATION_MESSAGE);
             mu.setVisible(true);
         } else {
             System.out.println("Existen en base de datos "+ud.getUserCount()+" usuario (s) disponibles.");
@@ -56,12 +106,12 @@ public class LoginServ extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         txtrut = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtpass = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         lblayuda = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         lblversion = new javax.swing.JLabel();
         lblfeedback = new javax.swing.JLabel();
@@ -78,6 +128,11 @@ public class LoginServ extends javax.swing.JFrame {
         txtrut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 txtrutMouseEntered(evt);
+            }
+        });
+        txtrut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtrutKeyPressed(evt);
             }
         });
 
@@ -99,9 +154,14 @@ public class LoginServ extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Contraseña"));
 
-        jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtpass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPasswordField1MouseEntered(evt);
+                txtpassMouseEntered(evt);
+            }
+        });
+        txtpass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpassKeyPressed(evt);
             }
         });
 
@@ -111,13 +171,13 @@ public class LoginServ extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(txtpass, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -142,22 +202,32 @@ public class LoginServ extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton1.setText("Iniciar Sesión");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLogin.setText("Iniciar Sesión");
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                btnLoginMouseEntered(evt);
+            }
+        });
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        btnLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnLoginKeyPressed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCerrar.setText("Cancelar");
+        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                btnCerrarMouseEntered(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
 
@@ -169,9 +239,9 @@ public class LoginServ extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(btnLogin)
                 .addGap(24, 24, 24)
-                .addComponent(jButton2)
+                .addComponent(btnCerrar)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -181,8 +251,8 @@ public class LoginServ extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(btnLogin)
+                    .addComponent(btnCerrar)
                     .addComponent(jButton3))
                 .addContainerGap())
         );
@@ -249,35 +319,61 @@ public class LoginServ extends javax.swing.JFrame {
         this.lblayuda.setText("Ingrese su RUT \"01.234.567-k\"");
     }//GEN-LAST:event_txtrutMouseEntered
 
-    private void jPasswordField1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseEntered
+    private void txtpassMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpassMouseEntered
         // TODO add your handling code here:
         this.lblayuda.setText("Ingrese su contraseña");
-    }//GEN-LAST:event_jPasswordField1MouseEntered
+    }//GEN-LAST:event_txtpassMouseEntered
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+    private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
         // TODO add your handling code here:
         this.lblayuda.setText("Inicia sesión deacurdo a los previlegios establecidos.");
-    }//GEN-LAST:event_jButton1MouseEntered
+    }//GEN-LAST:event_btnLoginMouseEntered
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+    private void btnCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseEntered
         // TODO add your handling code here:
         this.lblayuda.setText("Cancela el inicio en curso y cierra sistema.");
-    }//GEN-LAST:event_jButton2MouseEntered
+    }//GEN-LAST:event_btnCerrarMouseEntered
 
     private void lblversionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblversionMouseEntered
         // TODO add your handling code here:
         this.lblayuda.setText(googlecode);
     }//GEN-LAST:event_lblversionMouseEntered
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void lblfeedbackMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblfeedbackMouseEntered
         // TODO add your handling code here:
         this.lblayuda.setText(this.developers);
     }//GEN-LAST:event_lblfeedbackMouseEntered
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        this.loginAction();
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        this.loginAction();
+        }
+    }//GEN-LAST:event_btnLoginKeyPressed
+
+    private void txtpassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        this.loginAction();
+        }
+    }//GEN-LAST:event_txtpassKeyPressed
+
+    private void txtrutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrutKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        this.loginAction();
+        }
+    }//GEN-LAST:event_txtrutKeyPressed
 
     /**
      * @param args the command line arguments
@@ -315,17 +411,17 @@ public class LoginServ extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lblayuda;
     private javax.swing.JLabel lblfeedback;
     private javax.swing.JLabel lblversion;
+    private javax.swing.JPasswordField txtpass;
     private javax.swing.JFormattedTextField txtrut;
     // End of variables declaration//GEN-END:variables
 }

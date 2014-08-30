@@ -2,9 +2,10 @@ package utilidades;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import models.view.ComunicacionTest;
+import models.view.LoginServ;
 
 public final class DataBaseInstance {
-
+    LoginServ login=new LoginServ();
     private static Connection conn;
     private static final String basedatos = "reservashotel";//Nombre de base de datos
     private static final String usuario = "root";//Usuario de base de datos
@@ -28,9 +29,15 @@ public final class DataBaseInstance {
             } catch (ClassNotFoundException se) {
                 System.out.println("Error 1:" + se);
                 JOptionPane.showMessageDialog(null,"Error de controlador durante la comunicacion con base de datos "+basedatos+"\n\n\tDriver Instalado:\n\t"+driver+"\nCodigo de error:\n"+se, "¡ups! Algo inesperado ha pasado", JOptionPane.ERROR_MESSAGE);
-            } catch (SQLException ex) {
-                System.out.println("Error 2:" + ex);
-                JOptionPane.showMessageDialog(null,"Servidor de base de datos "+basedatos+" está detenido\nCodigo de error:\n"+ex, "¡ups! Algo inesperado ha pasado", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException se) {
+                JOptionPane.showMessageDialog(null,"Lo sentimos estamos experimentando un fallo!\n"
+                        + "Compruebe lo siguente:\n"
+                        + "\t- Asegurese que está conectado a Internet\n"
+                        + "\t- Si tiene un servidor local de base de datos asegure que está encendido y funcionando.\n"
+                        + "\t- No ha podido resolver el problema?\n"
+                        + "\t\tContacte con el administrador del sistema.", "Error en comunicación", JOptionPane.ERROR_MESSAGE);
+                System.out.println("Error: "+se);
+                System.exit(0);
             }
         }
         System.out.println(conn);
