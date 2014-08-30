@@ -57,6 +57,21 @@ public class Usuariodao {
         return usuario;
     }
     
+    public int getUserCount() {
+        int posid = 0;
+        try {
+            PreparedStatement pstm = DataBaseInstance.getInstanceConnection().prepareStatement("SELECT count(1) as total FROM usuario");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            posid = res.getInt("total");
+            res.close();
+            DataBaseInstance.closeConnection();
+        } catch (SQLException se) {
+            JOptionPane.showMessageDialog(null, se);
+        }
+        return posid;
+    }
+    
     public Object [][] getUsuario(){
         int posid = 0;
         try{
