@@ -43,18 +43,18 @@ public class MantenedorReserva extends javax.swing.JFrame {
         }
      }
     
-    public void getComboHabitacion(){
+    public void getComboHabitacion(int idtipo){
          try{
             DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
             Connection conexion = DataBaseInstance.getInstanceConnection();
             Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM tipo ORDER BY idtipo");
+            ResultSet rs = st.executeQuery("SELECT numerohabitacion FROM habitacion where idtipo="+idtipo);
             modeloCombo.addElement("Seleccione");
             while (rs.next()) {
-                modeloCombo.addElement(rs.getObject("nombre"));
+                modeloCombo.addElement(rs.getObject("numerohabitacion"));
             }
             rs.close();
-            cbtipo.setModel(modeloCombo);
+            cbhabitacion.setModel(modeloCombo);
             DataBaseInstance.closeConnection();
         } catch (SQLException ex) {
              System.out.println(ex);
@@ -95,7 +95,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cbtipo = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox();
+        cbhabitacion = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
@@ -244,10 +244,13 @@ public class MantenedorReserva extends javax.swing.JFrame {
         jLabel3.setText("Tipo Habitación");
 
         cbtipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "Tipo1" }));
+        cbtipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbtipoItemStateChanged(evt);
+            }
+        });
 
         jLabel13.setText("Habitación");
-
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione", "b283" }));
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Imagen");
@@ -268,7 +271,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
                             .addComponent(jLabel13))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox6, 0, 178, Short.MAX_VALUE)
+                            .addComponent(cbhabitacion, 0, 178, Short.MAX_VALUE)
                             .addComponent(cbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -285,7 +288,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbhabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -551,6 +554,12 @@ public class MantenedorReserva extends javax.swing.JFrame {
         this.btndelete.setEnabled(false);
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
+    private void cbtipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbtipoItemStateChanged
+        // TODO add your handling code here:
+        int num=this.cbtipo.getSelectedIndex();
+        this.getComboHabitacion(num);
+    }//GEN-LAST:event_cbtipoItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -596,12 +605,12 @@ public class MantenedorReserva extends javax.swing.JFrame {
     private javax.swing.JButton btnmodify;
     private javax.swing.JButton btnsave;
     private javax.swing.JButton btnupdate;
+    private javax.swing.JComboBox cbhabitacion;
     private javax.swing.JComboBox cbtipo;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox6;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
