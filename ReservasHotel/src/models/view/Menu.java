@@ -20,13 +20,12 @@ public class Menu extends javax.swing.JFrame {
     }
     public Menu(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
-        this.setLocationRelativeTo(null);
         this.btn5.setVisible(false);
         this.btn6.setVisible(false);
         this.btn7.setVisible(false);
-        this.btnmantenedorcliente.setVisible(false);
-        this.btnmantenedorhabita.setVisible(false);
-        this.btnmantenedortipo.setVisible(false);
+        this.btnMantenedorClientes.setVisible(false);
+        this.btnMantenedorHabitacion.setVisible(false);
+        this.btnMantenedorTipo.setVisible(false);
         this.btnmantenedorusuario.setVisible(false);
     }
 
@@ -43,15 +42,17 @@ public class Menu extends javax.swing.JFrame {
         btnmantenedorusuario = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lbldescripcion = new javax.swing.JLabel();
-        btnmantenedortipo = new javax.swing.JButton();
-        btnmantenedorhabita = new javax.swing.JButton();
-        btnmantenedorcliente = new javax.swing.JButton();
+        btnMantenedorTipo = new javax.swing.JButton();
+        btnMantenedorHabitacion = new javax.swing.JButton();
+        btnMantenedorClientes = new javax.swing.JButton();
         btn5 = new javax.swing.JButton();
         btn6 = new javax.swing.JButton();
         btn7 = new javax.swing.JButton();
-        btnsalir = new javax.swing.JButton();
+        btn8 = new javax.swing.JButton();
+        btn9 = new javax.swing.JButton();
+        btn10 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmSesion = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -60,8 +61,6 @@ public class Menu extends javax.swing.JFrame {
         btnmenucerrarsesion = new javax.swing.JMenuItem();
         btnmenusalir = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,11 +73,16 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         btnmantenedorusuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnmantenedorusuarioMouseReleased(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnmantenedorusuarioMouseEntered(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnmantenedorusuarioMouseReleased(evt);
+        });
+        btnmantenedorusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmantenedorusuarioActionPerformed(evt);
             }
         });
 
@@ -103,34 +107,33 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        btnmantenedortipo.setText("Mantenedor Tipo Habitación");
-        btnmantenedortipo.addFocusListener(new java.awt.event.FocusAdapter() {
+        btnMantenedorTipo.setText("Mantenedor Tipo Habitación");
+        btnMantenedorTipo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                btnmantenedortipoFocusGained(evt);
+                btnMantenedorTipoFocusGained(evt);
             }
         });
-        btnmantenedortipo.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnMantenedorTipo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnmantenedortipoMouseEntered(evt);
+                btnMantenedorTipoMouseEntered(evt);
             }
         });
 
-        btnmantenedorhabita.setText("Mantenedor Habitaciones");
+        btnMantenedorHabitacion.setText("Mantenedor Habitaciones");
 
-        btnmantenedorcliente.setText("Mantenedor Clientes");
+        btnMantenedorClientes.setText("Mantenedor Clientes");
 
-        btn5.setText("jButton5");
+        btn5.setText("Mantenedor Tipo");
 
-        btn6.setText("jButton6");
+        btn6.setText("Ingreso de Clientes");
 
-        btn7.setText("jButton7");
+        btn7.setText("Reservar");
 
-        btnsalir.setText("Salir");
-        btnsalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsalirActionPerformed(evt);
-            }
-        });
+        btn8.setText("Crear Usuario");
+
+        btn9.setText("Crear Tipo Habitación");
+
+        btn10.setText("Crear Habitación");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,40 +146,48 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnmantenedorusuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnmantenedortipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnmantenedorhabita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnmantenedorcliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 461, Short.MAX_VALUE)))
+                            .addComponent(btnMantenedorTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMantenedorHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMantenedorClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 293, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnmantenedorusuario)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnmantenedorusuario)
+                    .addComponent(btn6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnmantenedortipo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMantenedorTipo)
+                    .addComponent(btn7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnmantenedorhabita)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMantenedorHabitacion)
+                    .addComponent(btn8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnmantenedorcliente)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMantenedorClientes)
+                    .addComponent(btn9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnsalir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn5)
+                    .addComponent(btn10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jMenu1.setText("Sesión");
+        jmSesion.setText("Sesión");
 
         jMenu3.setText("Administrar Cuenta");
 
@@ -189,15 +200,15 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem3.setText("Administrar otra cuenta");
         jMenu3.add(jMenuItem3);
 
-        jMenu1.add(jMenu3);
+        jmSesion.add(jMenu3);
 
         btnmenubloq.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         btnmenubloq.setText("Bloquear");
-        jMenu1.add(btnmenubloq);
+        jmSesion.add(btnmenubloq);
 
         btnmenucerrarsesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         btnmenucerrarsesion.setText("Cerrar sesión");
-        jMenu1.add(btnmenucerrarsesion);
+        jmSesion.add(btnmenucerrarsesion);
 
         btnmenusalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         btnmenusalir.setText("Salir");
@@ -206,22 +217,10 @@ public class Menu extends javax.swing.JFrame {
                 btnmenusalirActionPerformed(evt);
             }
         });
-        jMenu1.add(btnmenusalir);
-        jMenu1.add(jSeparator1);
+        jmSesion.add(btnmenusalir);
+        jmSesion.add(jSeparator1);
 
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Configuraciones");
-
-        jMenuItem4.setText("Mantenedores");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jmSesion);
 
         setJMenuBar(jMenuBar1);
 
@@ -230,8 +229,8 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,9 +246,9 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnmantenedorusuarioFocusGained
 
-    private void btnmantenedortipoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnmantenedortipoFocusGained
+    private void btnMantenedorTipoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnMantenedorTipoFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnmantenedortipoFocusGained
+    }//GEN-LAST:event_btnMantenedorTipoFocusGained
 
     private void btnmantenedorusuarioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmantenedorusuarioMouseReleased
         // TODO add your handling code here:
@@ -261,28 +260,24 @@ public class Menu extends javax.swing.JFrame {
         this.lbldescripcion.setText(this.btnmantenedorusuario.getText()+": Prodrá realizar cambios eliminar o editar usuario");
     }//GEN-LAST:event_btnmantenedorusuarioMouseEntered
 
-    private void btnmantenedortipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmantenedortipoMouseEntered
+    private void btnMantenedorTipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMantenedorTipoMouseEntered
         // TODO add your handling code here:
         this.lbldescripcion.setText("descripcion boton 2");
-    }//GEN-LAST:event_btnmantenedortipoMouseEntered
+    }//GEN-LAST:event_btnMantenedorTipoMouseEntered
 
     private void btnmenusalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenusalirActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnmenusalirActionPerformed
 
-    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+    private void btnmantenedorusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmantenedorusuarioActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnsalirActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-        this.btnmantenedorcliente.setVisible(true);
-        this.btnmantenedorhabita.setVisible(true);
-        this.btnmantenedortipo.setVisible(true);
-        this.btnmantenedorusuario.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+        MantenedorUsuario mu=new MantenedorUsuario();
+        mu.setTitle("Mantenedor de Usuarios [Sesion] - Usuario");
+        mu.setLocationRelativeTo(null);
+        mu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnmantenedorusuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,28 +315,28 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn10;
     private javax.swing.JButton btn5;
     private javax.swing.JButton btn6;
     private javax.swing.JButton btn7;
-    private javax.swing.JButton btnmantenedorcliente;
-    private javax.swing.JButton btnmantenedorhabita;
-    private javax.swing.JButton btnmantenedortipo;
+    private javax.swing.JButton btn8;
+    private javax.swing.JButton btn9;
+    private javax.swing.JButton btnMantenedorClientes;
+    private javax.swing.JButton btnMantenedorHabitacion;
+    private javax.swing.JButton btnMantenedorTipo;
     private javax.swing.JButton btnmantenedorusuario;
     private javax.swing.JMenuItem btnmenubloq;
     private javax.swing.JMenuItem btnmenucerrarsesion;
     private javax.swing.JMenuItem btnmenusalir;
-    private javax.swing.JButton btnsalir;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu jmSesion;
     private javax.swing.JLabel lbldescripcion;
     // End of variables declaration//GEN-END:variables
 }

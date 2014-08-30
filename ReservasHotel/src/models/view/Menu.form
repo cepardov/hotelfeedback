@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="jmSesion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sesi&#xf3;n"/>
           </Properties>
@@ -62,21 +62,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Configuraciones"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Mantenedores"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
@@ -104,8 +89,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -138,15 +123,20 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnmantenedorusuario" max="32767" attributes="0"/>
-                              <Component id="btnmantenedortipo" max="32767" attributes="0"/>
-                              <Component id="btnmantenedorhabita" max="32767" attributes="0"/>
-                              <Component id="btnmantenedorcliente" max="32767" attributes="0"/>
+                              <Component id="btnMantenedorTipo" max="32767" attributes="0"/>
+                              <Component id="btnMantenedorHabitacion" max="32767" attributes="0"/>
+                              <Component id="btnMantenedorClientes" max="32767" attributes="0"/>
                               <Component id="btn5" max="32767" attributes="0"/>
-                              <Component id="btn6" max="32767" attributes="0"/>
-                              <Component id="btn7" max="32767" attributes="0"/>
-                              <Component id="btnsalir" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="461" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btn6" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="btn7" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="btn8" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="btn9" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="btn10" min="-2" pref="150" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="293" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -156,22 +146,31 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Component id="btnmantenedorusuario" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnmantenedorusuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnmantenedortipo" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnMantenedorTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnmantenedorhabita" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnMantenedorHabitacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnmantenedorcliente" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnMantenedorClientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btn5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btn6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btn7" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnsalir" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btn5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="119" max="32767" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -185,8 +184,9 @@
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="btnmantenedorusuarioFocusGained"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnmantenedorusuarioMouseEntered"/>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnmantenedorusuarioMouseReleased"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnmantenedorusuarioMouseEntered"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmantenedorusuarioActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -226,47 +226,54 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnmantenedortipo">
+        <Component class="javax.swing.JButton" name="btnMantenedorTipo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mantenedor Tipo Habitaci&#xf3;n"/>
           </Properties>
           <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="btnmantenedortipoFocusGained"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnmantenedortipoMouseEntered"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="btnMantenedorTipoFocusGained"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnMantenedorTipoMouseEntered"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnmantenedorhabita">
+        <Component class="javax.swing.JButton" name="btnMantenedorHabitacion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mantenedor Habitaciones"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnmantenedorcliente">
+        <Component class="javax.swing.JButton" name="btnMantenedorClientes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mantenedor Clientes"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton5"/>
+            <Property name="text" type="java.lang.String" value="Mantenedor Tipo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton6"/>
+            <Property name="text" type="java.lang.String" value="Ingreso de Clientes"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton7"/>
+            <Property name="text" type="java.lang.String" value="Reservar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnsalir">
+        <Component class="javax.swing.JButton" name="btn8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salir"/>
+            <Property name="text" type="java.lang.String" value="Crear Usuario"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnsalirActionPerformed"/>
-          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn9">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Crear Tipo Habitaci&#xf3;n"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn10">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Crear Habitaci&#xf3;n"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

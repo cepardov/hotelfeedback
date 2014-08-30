@@ -4,6 +4,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import models.beans.Tipobeans;
 import models.dao.Tipodao;
+/***
+ * 
+ * @author cepardov
+ */
+
 public class MantenedorTipo extends javax.swing.JFrame {
     Tipobeans t=new Tipobeans();
     Tipodao ti=new Tipodao();

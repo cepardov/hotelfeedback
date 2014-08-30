@@ -3,7 +3,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import models.beans.Clientebeans;
 import models.dao.Clientedao;
-import models.entity.Cliente;
 
 
 public class MantenedorClientes extends javax.swing.JFrame {
@@ -33,7 +32,7 @@ public class MantenedorClientes extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Nombre = new javax.swing.JLabel();
@@ -77,7 +76,12 @@ public class MantenedorClientes extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Cerrar");
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilidades/IMG/Actualizar.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -129,10 +133,10 @@ public class MantenedorClientes extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
+                        .addComponent(btnCerrar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtrut, javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,6 +145,7 @@ public class MantenedorClientes extends javax.swing.JFrame {
                             .addComponent(txtpaterno, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -148,8 +153,7 @@ public class MantenedorClientes extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtmail)
-                                    .addComponent(txttelefono)))
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txttelefono))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -181,7 +185,7 @@ public class MantenedorClientes extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4)
+                    .addComponent(btnCerrar)
                     .addComponent(jButton5))
                 .addContainerGap())
         );
@@ -212,7 +216,7 @@ public class MantenedorClientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -316,6 +320,14 @@ public class MantenedorClientes extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        Menu men=new Menu();
+        men.setLocationRelativeTo(null);
+        men.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,10 +365,10 @@ public class MantenedorClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nombre;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;

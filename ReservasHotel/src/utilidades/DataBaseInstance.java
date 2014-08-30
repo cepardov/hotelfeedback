@@ -1,7 +1,6 @@
 package utilidades;
 import java.sql.*;
 import javax.swing.JOptionPane;
-import models.view.ComunicacionTest;
 import models.view.LoginServ;
 
 public final class DataBaseInstance {
