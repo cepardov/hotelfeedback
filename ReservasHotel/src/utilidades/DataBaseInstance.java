@@ -28,9 +28,9 @@ public final class DataBaseInstance {
             } catch (ClassNotFoundException se) {
                 System.out.println("Error 1:" + se);
                 JOptionPane.showMessageDialog(null,"Error de controlador durante la comunicacion con base de datos "+basedatos+"\n\n\tDriver Instalado:\n\t"+driver+"\nCodigo de error:\n"+se, "¡ups! Algo inesperado ha pasado", JOptionPane.ERROR_MESSAGE);
-            } catch (SQLException se) {
-                System.out.println("Error 2:" + se);
-                JOptionPane.showMessageDialog(null,"Error de lectura/escritura durante la comunicacion con base de datos "+basedatos+"\nCodigo de error:\n"+se, "¡ups! Algo inesperado ha pasado", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException ex) {
+                System.out.println("Error 2:" + ex);
+                JOptionPane.showMessageDialog(null,"Servidor de base de datos "+basedatos+" está detenido\nCodigo de error:\n"+ex, "¡ups! Algo inesperado ha pasado", JOptionPane.ERROR_MESSAGE);
             }
         }
         System.out.println(conn);
