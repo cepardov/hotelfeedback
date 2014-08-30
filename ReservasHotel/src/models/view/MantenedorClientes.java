@@ -3,6 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import models.beans.Clientebeans;
 import models.dao.Clientedao;
+import models.entity.Cliente;
 
 
 public class MantenedorClientes extends javax.swing.JFrame {
@@ -46,6 +47,7 @@ public class MantenedorClientes extends javax.swing.JFrame {
         txttelefono = new javax.swing.JTextField();
         txtmail = new javax.swing.JTextField();
         txtrut = new javax.swing.JFormattedTextField();
+        jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
@@ -102,6 +104,13 @@ public class MantenedorClientes extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jButton6.setText("Seleccionar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,12 +141,15 @@ public class MantenedorClientes extends javax.swing.JFrame {
                             .addComponent(txtpaterno, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtmail)
-                            .addComponent(txttelefono))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtmail)
+                                    .addComponent(txttelefono)))
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,7 +158,8 @@ public class MantenedorClientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtrut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtrut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Nombre)
@@ -277,6 +290,32 @@ public class MantenedorClientes extends javax.swing.JFrame {
         this.updateTabla();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+        /*
+                Cliente c=new Cliente();
+        c.setIdcliente(txtrut.getText());
+        c.setNombre(txtnombre.getText());
+        c.setPaterno(txtpaterno.getText());
+        c.setMaterno(txtmaterno.getText());
+        c.setTelefono(txttelefono.getText());
+        c.setMail(txtmail.getText());
+        */
+        MantenedorReserva mr=new MantenedorReserva();
+        mr.rut=txtrut.getText();
+        mr.nombre=txtnombre.getText();
+        mr.paterno=txtpaterno.getText();
+        mr.materno=txtmaterno.getText();
+        mr.telefono=txttelefono.getText();
+        mr.mail=txtmail.getText();
+        
+        System.out.println("Nombre"+mr.nombre);
+        
+        dispose();
+        mr.llenarusuario();
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,6 +358,7 @@ public class MantenedorClientes extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
