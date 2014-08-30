@@ -53,7 +53,7 @@ public class Reservadao {
         PreparedStatement saveReserva;
         try {
             saveReserva = getConnection().prepareStatement(
-                    "INSERT INTO reserva VALUES (?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO reserva(fechareserva,fechainicio,fechatermino,idhabitacion,idcliente,rutusuario) VALUES (?, ?, ?, ?, ?, ?)");
             saveReserva.setString(1, reserva.getFechareserva());
             saveReserva.setString(2, reserva.getFechainicio());
             saveReserva.setString(3, reserva.getFechatermino());
