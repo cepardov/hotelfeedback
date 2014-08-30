@@ -506,8 +506,8 @@ public class MantenedorReserva extends javax.swing.JFrame {
           r.setFechainicio(this.txtfechainicio.getText());
           r.setFechatermino(this.txtfechatermino.getText());
           r.setIdhabitacion(this.cbhabitacion.getSelectedIndex());
-          r.setIdcliente(Integer.parseInt(this.txtrut.getText()));
-          r.setRutusuario(Integer.parseInt(this.txtrut4.getText()));
+          r.setIdcliente(this.txtrut.getText());
+          r.setRutusuario(this.txtrut4.getText());
           r.save();
            
 
@@ -555,6 +555,9 @@ public class MantenedorReserva extends javax.swing.JFrame {
     private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
         // TODO add your handling code here:
 //        ud.closeConnection();
+        Menu men=new Menu();
+        men.setLocationRelativeTo(null);
+        men.setVisible(true);
         dispose();
     }//GEN-LAST:event_btncerrarActionPerformed
 

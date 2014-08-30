@@ -46,6 +46,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmenucerrarsesionActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btnmenusalir">
               <Properties>
@@ -126,7 +129,7 @@
                               <Component id="btnMantenedorTipo" max="32767" attributes="0"/>
                               <Component id="btnMantenedorHabitacion" max="32767" attributes="0"/>
                               <Component id="btnMantenedorClientes" max="32767" attributes="0"/>
-                              <Component id="btn5" max="32767" attributes="0"/>
+                              <Component id="btnMantenedorReserva" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -167,7 +170,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btn5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnMantenedorReserva" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn10" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="119" max="32767" attributes="0"/>
@@ -233,22 +236,32 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="btnMantenedorTipoFocusGained"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnMantenedorTipoMouseEntered"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorTipoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnMantenedorHabitacion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mantenedor Habitaciones"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorHabitacionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnMantenedorClientes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mantenedor Clientes"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorClientesActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn5">
+        <Component class="javax.swing.JButton" name="btnMantenedorReserva">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mantenedor Tipo"/>
+            <Property name="text" type="java.lang.String" value="Mantenedor Reserva"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantenedorReservaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn6">
           <Properties>

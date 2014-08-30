@@ -329,6 +329,9 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
 
     private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
         // TODO add your handling code here:}
+        Menu men=new Menu();
+        men.setVisible(true);
+        men.setLocationRelativeTo(null);
         dispose();
     }//GEN-LAST:event_btncerrarActionPerformed
 

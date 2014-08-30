@@ -250,7 +250,10 @@ public class MantenedorTipo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+        Menu men=new Menu();
+        men.setVisible(true);
+        men.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
