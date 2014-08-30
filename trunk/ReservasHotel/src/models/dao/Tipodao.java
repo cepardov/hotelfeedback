@@ -71,9 +71,6 @@ public class Tipodao {
             ResultSet res = pstm.executeQuery();
             int increment = 0;
             while(res.next()){
-                
-                
-                
                 String estIdtipo = Integer.toString(res.getInt("idtipo"));
                 String estNombre = res.getString("nombre");
                 String estDescripcion = res.getString("descripcion");
