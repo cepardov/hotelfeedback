@@ -425,6 +425,9 @@ public class MantenedorUsuario extends javax.swing.JFrame {
 
     private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
         // TODO add your handling code here:
+        Menu men=new Menu();
+        men.setLocationRelativeTo(null);
+        men.setVisible(true);
         ud.closeConnection();
         dispose();
     }//GEN-LAST:event_btncerrarActionPerformed

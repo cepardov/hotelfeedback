@@ -36,8 +36,8 @@ public class Reservadao {
             reserva.setFechainicio(result.getString("fechainicio"));
             reserva.setFechatermino(result.getString("fechatermino"));
             reserva.setIdhabitacion(result.getInt("idhabitacion"));
-            reserva.setIdcliente(result.getInt("idcliente"));
-            reserva.setRutusuario(result.getInt("rutusuario"));
+            reserva.setIdcliente(result.getString("idcliente"));
+            reserva.setRutusuario(result.getString("rutusuario"));
             
             result.close();
             stmt.close();
@@ -58,8 +58,8 @@ public class Reservadao {
             saveReserva.setString(2, reserva.getFechainicio());
             saveReserva.setString(3, reserva.getFechatermino());
             saveReserva.setInt(4, reserva.getIdhabitacion());
-            saveReserva.setInt(5, reserva.getIdcliente());
-            saveReserva.setInt(6, reserva.getRutusuario());
+            saveReserva.setString(5, reserva.getIdcliente());
+            saveReserva.setString(6, reserva.getRutusuario());
             
             saveReserva.executeUpdate();
             closeConnection();
@@ -79,8 +79,8 @@ public class Reservadao {
             saveReserva.setString(2, reserva.getFechainicio());
             saveReserva.setString(3, reserva.getFechatermino());
             saveReserva.setInt(4, reserva.getIdhabitacion());
-            saveReserva.setInt(5, reserva.getIdcliente());
-            saveReserva.setInt(6, reserva.getRutusuario());
+            saveReserva.setString(5, reserva.getIdcliente());
+            saveReserva.setString(6, reserva.getRutusuario());
             saveReserva.setInt(7, reserva.getIdreserva());
             saveReserva.executeUpdate();
             closeConnection();

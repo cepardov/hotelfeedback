@@ -20,7 +20,7 @@ public class Menu extends javax.swing.JFrame {
     }
     public Menu(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
-        this.btn5.setVisible(false);
+        this.btnMantenedorReserva.setVisible(false);
         this.btn6.setVisible(false);
         this.btn7.setVisible(false);
         this.btnMantenedorClientes.setVisible(false);
@@ -45,7 +45,7 @@ public class Menu extends javax.swing.JFrame {
         btnMantenedorTipo = new javax.swing.JButton();
         btnMantenedorHabitacion = new javax.swing.JButton();
         btnMantenedorClientes = new javax.swing.JButton();
-        btn5 = new javax.swing.JButton();
+        btnMantenedorReserva = new javax.swing.JButton();
         btn6 = new javax.swing.JButton();
         btn7 = new javax.swing.JButton();
         btn8 = new javax.swing.JButton();
@@ -118,12 +118,32 @@ public class Menu extends javax.swing.JFrame {
                 btnMantenedorTipoMouseEntered(evt);
             }
         });
+        btnMantenedorTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMantenedorTipoActionPerformed(evt);
+            }
+        });
 
         btnMantenedorHabitacion.setText("Mantenedor Habitaciones");
+        btnMantenedorHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMantenedorHabitacionActionPerformed(evt);
+            }
+        });
 
         btnMantenedorClientes.setText("Mantenedor Clientes");
+        btnMantenedorClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMantenedorClientesActionPerformed(evt);
+            }
+        });
 
-        btn5.setText("Mantenedor Tipo");
+        btnMantenedorReserva.setText("Mantenedor Reserva");
+        btnMantenedorReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMantenedorReservaActionPerformed(evt);
+            }
+        });
 
         btn6.setText("Ingreso de Clientes");
 
@@ -149,7 +169,7 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(btnMantenedorTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnMantenedorHabitacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnMantenedorClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnMantenedorReserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,7 +200,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btn9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn5)
+                    .addComponent(btnMantenedorReserva)
                     .addComponent(btn10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,6 +228,11 @@ public class Menu extends javax.swing.JFrame {
 
         btnmenucerrarsesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         btnmenucerrarsesion.setText("Cerrar sesión");
+        btnmenucerrarsesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmenucerrarsesionActionPerformed(evt);
+            }
+        });
         jmSesion.add(btnmenucerrarsesion);
 
         btnmenusalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
@@ -279,6 +304,49 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnmantenedorusuarioActionPerformed
 
+    private void btnmenucerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenucerrarsesionActionPerformed
+        // TODO add your handling code here:
+        LoginServ login=new LoginServ();
+        login.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnmenucerrarsesionActionPerformed
+
+    private void btnMantenedorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenedorTipoActionPerformed
+        // TODO add your handling code here:
+        MantenedorTipo mt=new MantenedorTipo();
+        mt.setTitle("Mantenedor Tipo");
+        mt.setLocationRelativeTo(null);
+        mt.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMantenedorTipoActionPerformed
+
+    private void btnMantenedorHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenedorHabitacionActionPerformed
+        // TODO add your handling code here:
+        MantenedorHabitaciones mh=new MantenedorHabitaciones();
+        mh.setTitle("Mantenedor habitaciones");
+        mh.setLocationRelativeTo(null);
+        mh.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMantenedorHabitacionActionPerformed
+
+    private void btnMantenedorClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenedorClientesActionPerformed
+        // TODO add your handling code here:
+        MantenedorClientes mc=new MantenedorClientes();
+        mc.setTitle("Mantenedor Clientes");
+        mc.setLocationRelativeTo(null);
+        mc.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMantenedorClientesActionPerformed
+
+    private void btnMantenedorReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenedorReservaActionPerformed
+        // TODO add your handling code here:
+        MantenedorReserva mr=new MantenedorReserva();
+        mr.setTitle("Mantenedor Reserva");
+        mr.setLocationRelativeTo(null);
+        mr.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMantenedorReservaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -316,13 +384,13 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn10;
-    private javax.swing.JButton btn5;
     private javax.swing.JButton btn6;
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
     private javax.swing.JButton btnMantenedorClientes;
     private javax.swing.JButton btnMantenedorHabitacion;
+    private javax.swing.JButton btnMantenedorReserva;
     private javax.swing.JButton btnMantenedorTipo;
     private javax.swing.JButton btnmantenedorusuario;
     private javax.swing.JMenuItem btnmenubloq;

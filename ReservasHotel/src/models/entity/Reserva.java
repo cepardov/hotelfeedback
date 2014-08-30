@@ -10,8 +10,8 @@ public class Reserva {
     private String fechainicio;
     private String fechatermino;
     private int idhabitacion;
-    private int idcliente;
-    private int rutusuario;
+    private String idcliente;
+    private String rutusuario;
 
     public int getIdreserva() {
         return idreserva;
@@ -53,19 +53,19 @@ public class Reserva {
         this.idhabitacion = idhabitacion;
     }
 
-    public int getIdcliente() {
+    public String getIdcliente() {
         return idcliente;
     }
 
-    public void setIdcliente(int idcliente) {
+    public void setIdcliente(String idcliente) {
         this.idcliente = idcliente;
     }
 
-    public int getRutusuario() {
+    public String getRutusuario() {
         return rutusuario;
     }
 
-    public void setRutusuario(int rutusuario) {
+    public void setRutusuario(String rutusuario) {
         this.rutusuario = rutusuario;
     }
     
