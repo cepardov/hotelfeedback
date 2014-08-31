@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.DefaultComboBoxModel;
 import models.beans.Reservabeans;
+import models.dao.Habitaciondao;
+import utilidades.CustomImageIcon;
 import utilidades.DataBaseInstance;
 
 /**
@@ -135,7 +137,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
         cbtipo = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
         cbhabitacion = new javax.swing.JComboBox();
-        jLabel14 = new javax.swing.JLabel();
+        lblFoto = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -151,7 +153,6 @@ public class MantenedorReserva extends javax.swing.JFrame {
         txtmail3 = new javax.swing.JTextField();
         jButton18 = new javax.swing.JButton();
         txtrut = new javax.swing.JFormattedTextField();
-        txtrut4 = new javax.swing.JFormattedTextField();
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -273,9 +274,14 @@ public class MantenedorReserva extends javax.swing.JFrame {
 
         jLabel13.setText("Habitación");
 
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Imagen");
-        jLabel14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        cbhabitacion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbhabitacionItemStateChanged(evt);
+            }
+        });
+
+        lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jButton1.setText("Consulta Habitación");
 
@@ -296,7 +302,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
                             .addComponent(cbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -315,7 +321,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -407,12 +413,6 @@ public class MantenedorReserva extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        try {
-            txtrut4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-A")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         btnCerrar.setText("Volver al menú");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -455,8 +455,6 @@ public class MantenedorReserva extends javax.swing.JFrame {
                         .addComponent(btnbuscarrut)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
-                        .addGap(185, 185, 185)
-                        .addComponent(txtrut4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -468,15 +466,12 @@ public class MantenedorReserva extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCerrar))
                     .addGroup(HoraLayout.createSequentialGroup()
-                        .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(HoraLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(btnbuscarrut)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)))
-                            .addComponent(txtrut4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(btnbuscarrut)
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(HoraLayout.createSequentialGroup()
@@ -526,7 +521,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
           r.setFechatermino(this.txtfechatermino.getText());
           r.setIdhabitacion(this.cbhabitacion.getSelectedIndex());
           r.setIdcliente(this.txtrut.getText());
-          r.setRutusuario(this.txtrut4.getText());
+          r.setRutusuario(this.rut);
           r.save();
            
 
@@ -608,6 +603,20 @@ public class MantenedorReserva extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void cbhabitacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbhabitacionItemStateChanged
+        // TODO add your handling code here:
+        int numHabitacion=Integer.parseInt(this.cbhabitacion.getSelectedItem().toString());
+        System.out.println("NumHabitacion="+numHabitacion);
+        CustomImageIcon foto = Habitaciondao.getFoto(numHabitacion);
+        if(foto!=null)
+        {
+           this.lblFoto.setIcon(foto);
+        }else{
+            this.lblFoto.setIcon(null);
+        }
+        lblFoto.updateUI();
+    }//GEN-LAST:event_cbhabitacionItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -662,7 +671,6 @@ public class MantenedorReserva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -675,6 +683,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel lblFoto;
     private datechooser.beans.DateChooserCombo txtfechainicio;
     private datechooser.beans.DateChooserCombo txtfechatermino;
     private javax.swing.JTextField txtmail3;
@@ -682,7 +691,6 @@ public class MantenedorReserva extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtnombre3;
     private javax.swing.JFormattedTextField txtpaterno3;
     private javax.swing.JFormattedTextField txtrut;
-    private javax.swing.JFormattedTextField txtrut4;
     private javax.swing.JTextField txttelefono3;
     // End of variables declaration//GEN-END:variables
 }
