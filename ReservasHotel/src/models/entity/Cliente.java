@@ -9,7 +9,7 @@ package models.entity;
  * @author Luis
  */
 public class Cliente {
-     private String idcliente;
+    private String idcliente;
     private String nombre;
     private String paterno;
     private String materno;

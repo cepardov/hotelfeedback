@@ -17,6 +17,7 @@ import utilidades.DataBaseInstance;
  * @author Luis
  */
 public class Clientedao {
+    String idcliente, nombre, paterno,materno;
      protected Connection getConnection() {
         return DataBaseInstance.getInstanceConnection();
     }
@@ -27,6 +28,24 @@ public class Clientedao {
      public void disconec(){
          this.closeConnection();
      }
+     
+     public void getClienteByRut(String rutcliente){
+        try{
+            PreparedStatement pstm = getConnection().prepareStatement("SELECT idcliente, nombre, paterno, materno, telefono, mail FROM cliente WHERE idcliente='"+rutcliente+"'");
+            ResultSet res = pstm.executeQuery();
+            while(res.next()){
+                this.setIdcliente(res.getString("idcliente"));
+                this.setNombre(res.getString("nombre"));
+                this.setPaterno(res.getString("paterno"));
+                this.setMaterno(res.getString("materno"));
+            }
+            res.close();
+            this.closeConnection();
+            
+            }catch(SQLException se){
+                JOptionPane.showMessageDialog(null, se);
+        }
+    }
      
     public Object [][] getCliente(){
         int posid = 0;
@@ -45,9 +64,6 @@ public class Clientedao {
             ResultSet res = pstm.executeQuery();
             int increment = 0;
             while(res.next()){
-                
-                
-                
                 String estIdcliente = res.getString("idcliente");
                 String estNombre = res.getString("nombre");
                 String estPaterno = res.getString("paterno");
@@ -125,4 +141,38 @@ public class Clientedao {
     protected void closeConnection() {
         DataBaseInstance.closeConnection();
     }
+
+    public String getIdcliente() {
+        return idcliente;
+    }
+
+    public void setIdcliente(String idcliente) {
+        this.idcliente = idcliente;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPaterno() {
+        return paterno;
+    }
+
+    public void setPaterno(String paterno) {
+        this.paterno = paterno;
+    }
+
+    public String getMaterno() {
+        return materno;
+    }
+
+    public void setMaterno(String materno) {
+        this.materno = materno;
+    }
+    
+    
 }
