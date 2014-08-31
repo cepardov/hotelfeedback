@@ -369,7 +369,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         {
            this.lblFoto.setIcon(foto);
         }else{
-            this.lblFoto.setIcon(null);
+            this.lblFoto.setIcon(new CustomImageIcon(getClass().getResource("/utilidades/IMG/hotel-icon.png")));
         }
         lblFoto.updateUI();
     }//GEN-LAST:event_tablaMouseClicked
