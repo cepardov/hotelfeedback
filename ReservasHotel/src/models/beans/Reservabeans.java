@@ -1,7 +1,10 @@
 package models.beans;
 import models.dao.Reservadao;
 import models.entity.Reserva;
-
+/***
+ * 
+ * @author cepardov
+ */
 public class Reservabeans extends Reserva{
     private Reservadao reservadao = new Reservadao();
     

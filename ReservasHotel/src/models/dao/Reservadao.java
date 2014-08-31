@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import models.entity.Reserva;
 import utilidades.DataBaseInstance;
-
+/***
+ * 
+ * @author cepardov
+ */
 public class Reservadao {
      protected Connection getConnection() {
         return DataBaseInstance.getInstanceConnection();

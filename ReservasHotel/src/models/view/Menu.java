@@ -11,24 +11,36 @@ package models.view;
  * @author cepardov
  */
 public class Menu extends javax.swing.JFrame {
-
+    //String rut,nombre,paterno,materno,privilegio,clave;
     /**
      * Creates new form Menu
+     * @param rut
+     * @param nombre
+     * @param paterno
+     * @param materno
+     * @param privilegio
+     * @param clave
      */
-    public Menu() {
-        initComponents();
-    }
     public Menu(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
-        this.btnMantenedorReserva.setVisible(false);
-        this.btn6.setVisible(false);
-        this.btn7.setVisible(false);
-        this.btnMantenedorClientes.setVisible(false);
-        this.btnMantenedorHabitacion.setVisible(false);
-        this.btnMantenedorTipo.setVisible(false);
-        this.btnmantenedorusuario.setVisible(false);
+        this.funcPrivilegio(privilegio);
+    }
+    public Menu() {
+        initComponents();
+        //No se Utiliza
     }
 
+    private void funcPrivilegio(String privilegio){
+        System.out.println("Privilegio="+privilegio);
+        if(privilegio.equals("Recepcionista")){
+            this.btnMantenedorClientes.setVisible(false);
+            this.btnMantenedorHabitacion.setVisible(false);
+            this.btnMantenedorReserva.setVisible(false);
+            this.btnMantenedorTipo.setVisible(false);
+            this.btnmantenedorusuario.setVisible(false);
+        } else {
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +52,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnmantenedorusuario = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        lblayuda = new javax.swing.JPanel();
         lbldescripcion = new javax.swing.JLabel();
         btnMantenedorTipo = new javax.swing.JButton();
         btnMantenedorHabitacion = new javax.swing.JButton();
@@ -86,22 +98,22 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
+        lblayuda.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
 
         lbldescripcion.setText(" ");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout lblayudaLayout = new javax.swing.GroupLayout(lblayuda);
+        lblayuda.setLayout(lblayudaLayout);
+        lblayudaLayout.setHorizontalGroup(
+            lblayudaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblayudaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbldescripcion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        lblayudaLayout.setVerticalGroup(
+            lblayudaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblayudaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbldescripcion)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -125,6 +137,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnMantenedorHabitacion.setText("Mantenedor Habitaciones");
+        btnMantenedorHabitacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMantenedorHabitacionMouseEntered(evt);
+            }
+        });
         btnMantenedorHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMantenedorHabitacionActionPerformed(evt);
@@ -132,6 +149,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnMantenedorClientes.setText("Mantenedor Clientes");
+        btnMantenedorClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMantenedorClientesMouseEntered(evt);
+            }
+        });
         btnMantenedorClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMantenedorClientesActionPerformed(evt);
@@ -139,6 +161,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnMantenedorReserva.setText("Mantenedor Reserva");
+        btnMantenedorReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMantenedorReservaMouseEntered(evt);
+            }
+        });
         btnMantenedorReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMantenedorReservaActionPerformed(evt);
@@ -162,7 +189,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblayuda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnmantenedorusuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -203,7 +230,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btnMantenedorReserva)
                     .addComponent(btn10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblayuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -287,7 +314,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnMantenedorTipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMantenedorTipoMouseEntered
         // TODO add your handling code here:
-        this.lbldescripcion.setText("descripcion boton 2");
+        this.lbldescripcion.setText(this.btnMantenedorTipo.getText()+": Cree, edite y elimine tipos de habitaciones.");
     }//GEN-LAST:event_btnMantenedorTipoMouseEntered
 
     private void btnmenusalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenusalirActionPerformed
@@ -347,6 +374,21 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnMantenedorReservaActionPerformed
 
+    private void btnMantenedorHabitacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMantenedorHabitacionMouseEntered
+        // TODO add your handling code here:
+        this.lbldescripcion.setText(this.btnMantenedorHabitacion.getText()+": Cree, edite y elimine habitaciones segun tipo");
+    }//GEN-LAST:event_btnMantenedorHabitacionMouseEntered
+
+    private void btnMantenedorClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMantenedorClientesMouseEntered
+        // TODO add your handling code here:
+        this.lbldescripcion.setText(this.btnMantenedorClientes.getText()+": Cree, edite y elimine usuarios del sistema");
+    }//GEN-LAST:event_btnMantenedorClientesMouseEntered
+
+    private void btnMantenedorReservaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMantenedorReservaMouseEntered
+        // TODO add your handling code here:
+        this.lbldescripcion.setText(this.btnMantenedorReserva.getText()+": Cree, edite y elimine reservas relizadas");
+    }//GEN-LAST:event_btnMantenedorReservaMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -402,9 +444,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu jmSesion;
+    private javax.swing.JPanel lblayuda;
     private javax.swing.JLabel lbldescripcion;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,10 @@
 package models.beans;
 import models.dao.Tipodao;
 import models.entity.Tipo;
-
+/***
+ * 
+ * @author cepardov
+ */
 public class Tipobeans extends Tipo {
     Tipodao tipodao=new Tipodao();
     public void buscarnombres(){

@@ -1,7 +1,7 @@
 package models.entity;
 
 /**
- *
+ * @author cepardov
  * @author Luis
  */
 public class Reserva {

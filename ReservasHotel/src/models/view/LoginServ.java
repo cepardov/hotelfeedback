@@ -7,7 +7,6 @@
 package models.view;
 
 import java.awt.event.KeyEvent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import models.dao.Usuariodao;
 import utilidades.Usuario;
@@ -28,9 +27,9 @@ public class LoginServ extends javax.swing.JFrame {
     public LoginServ() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.lblayuda.setText("");
+        this.lblayuda.setText("Situe el puntero del mause donde desee ayuda");
         this.lblversion.setText(version);
-        this.setTitle("Inicio de sesión");
+        this.setTitle("Inicio de sesión");;
         this.comprobarUsuario();
     }
     
@@ -62,10 +61,8 @@ public class LoginServ extends javax.swing.JFrame {
                 System.out.println("Error inicio de sesión");
                 JOptionPane.showMessageDialog(this, "El nombre de usuario y/o contraseña no son validos.\nIntentos restantes "+intentos);
             }else if(u!=null){
-                Menu m=new Menu();
-//                Escritorio es=new Escritorio(u.getNombre(),u.getApellido(),u.getUsuario());
-                m.setState(JFrame.MAXIMIZED_BOTH);
-                m.setTitle(u.getNombre()+" "+u.getPaterno());
+                Menu m=new Menu(u.getRut(),u.getNombre(),u.getPaterno(),u.getMaterno(),u.getPrivilegio(),u.getClave());
+                m.setTitle("Gestión Hotelera - "+u.getNombre()+" "+u.getPaterno()+" "+u.getMaterno()+" ["+u.getPrivilegio()+"]");
                 m.setLocationRelativeTo(null);
                 m.setVisible(true);
                 dispose();
@@ -183,7 +180,7 @@ public class LoginServ extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
 
-        lblayuda.setText("Texto de ayuda");
+        lblayuda.setText("Ayuda");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
