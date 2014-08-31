@@ -1,6 +1,10 @@
 package models.beans;
 import models.dao.Habitaciondao;
 import models.entity.Habitacion;
+/***
+ * 
+ * @author cepardov
+ */
 public class Habitacionbeans extends Habitacion{
     private Habitaciondao habitaciondao = new Habitaciondao();
     

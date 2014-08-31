@@ -5,10 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import models.entity.Usuario;
-import models.entity.Usuario;
 import utilidades.DataBaseInstance;
 /**
- *
+ * @author cepardov
  * @author Luis
  */
 public class Usuariodao {

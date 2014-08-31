@@ -16,7 +16,10 @@ import models.entity.Habitacion;
 import utilidades.CustomImageIcon;
 import utilidades.DataBaseInstance;
 
-
+/***
+ * 
+ * @author cepardov
+ */
 public class Habitaciondao {
     protected Connection getConnection() {
         return DataBaseInstance.getInstanceConnection();

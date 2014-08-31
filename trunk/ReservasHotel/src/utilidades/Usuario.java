@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
  */
 
 public class Usuario{
-	private String nombre,paterno,materno,privilegio,clave;
+	private String rut,nombre,paterno,materno,privilegio,clave;
 
 	/** Crea un nueva instancia de la clase usuario */
 	public Usuario(){
@@ -27,6 +27,7 @@ public class Usuario{
             rs=pr.executeQuery();
             while(rs.next()){
                 u=new Usuario();
+                u.setRut(rs.getString("rutusuario"));
                 u.setNombre(rs.getString("nombre"));
                 u.setPaterno(rs.getString("paterno"));
                 u.setMaterno(rs.getString("materno"));
@@ -34,8 +35,8 @@ public class Usuario{
                 u.setClave(rs.getString("clave"));
                 break;
             }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, ex.getErrorCode());
+        }catch(SQLException se){
+            JOptionPane.showMessageDialog(null, se);
             u=null;
         }finally{
             try{
@@ -89,5 +90,13 @@ public class Usuario{
     public void setClave(String clave) {
         this.clave = clave;
     }
-        
+
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+     
 }

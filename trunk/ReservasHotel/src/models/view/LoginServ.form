@@ -183,7 +183,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblayuda">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Texto de ayuda"/>
+            <Property name="text" type="java.lang.String" value="Ayuda"/>
           </Properties>
         </Component>
       </SubComponents>

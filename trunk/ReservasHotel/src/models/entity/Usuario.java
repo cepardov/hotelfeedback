@@ -2,7 +2,6 @@ package models.entity;
 
 /**
  * 
- * 
  * @author cepardov
  */
 

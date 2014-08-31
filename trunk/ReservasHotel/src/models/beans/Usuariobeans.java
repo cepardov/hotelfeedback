@@ -5,7 +5,10 @@
 package models.beans;
 import models.dao.Usuariodao;
 import models.entity.Usuario;
-
+/***
+ * 
+ * @author cepardov
+ */
 public class Usuariobeans extends Usuario {
     Usuariodao usuariodao=new Usuariodao();
     

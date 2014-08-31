@@ -3,7 +3,7 @@ package models.entity;
 import java.io.FileInputStream;
 
 /**
- *
+ * @author cepardov
  * @author Luis
  */
 public class Habitacion {
