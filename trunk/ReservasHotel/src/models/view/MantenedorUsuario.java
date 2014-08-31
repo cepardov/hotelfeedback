@@ -16,18 +16,36 @@ import models.dao.Usuariodao;
  * @author cepardov
  */
 public class MantenedorUsuario extends javax.swing.JFrame {
+    String rut,nombre,paterno,materno,privilegio,clave;
     Usuariobeans ub=new Usuariobeans();
     Usuariodao ud=new Usuariodao();
     Object [][] dttipo;
     int fila, idtipo=0;
     /**
      * Creates new form MantenedorUsuario
+     * @param rut
+     * @param nombre
+     * @param paterno
+     * @param materno
+     * @param privilegio
+     * @param clave
      */
-    public MantenedorUsuario() {
+    public MantenedorUsuario(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
         this.updateTabla();
         this.btnmodify.setEnabled(false);
         this.btndelete.setEnabled(false);
+        
+        //set variables locales con datos sensibles
+        this.rut=rut;
+        this.nombre=nombre;
+        this.paterno=paterno;
+        this.materno=materno;
+        this.privilegio=privilegio;
+        this.clave=clave;
+    }
+    
+    public MantenedorUsuario(){
     }
     
     private void updateTabla(){
@@ -61,7 +79,6 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         btnsave = new javax.swing.JButton();
         btnmodify = new javax.swing.JButton();
         btndelete = new javax.swing.JButton();
-        btncerrar = new javax.swing.JButton();
         btnupdate = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtrut = new javax.swing.JFormattedTextField();
@@ -83,6 +100,8 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtpassre = new javax.swing.JPasswordField();
         btnlimpiar = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
+        btnCerrar1 = new javax.swing.JButton();
         jpTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -110,13 +129,6 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         btndelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndeleteActionPerformed(evt);
-            }
-        });
-
-        btncerrar.setText("Cerrar");
-        btncerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncerrarActionPerformed(evt);
             }
         });
 
@@ -162,6 +174,20 @@ public class MantenedorUsuario extends javax.swing.JFrame {
             }
         });
 
+        btnCerrar.setText("Volver al menú");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+
+        btnCerrar1.setText("Volver al menú");
+        btnCerrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,8 +205,9 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                         .addComponent(btndelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnupdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btncerrar))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCerrar1)
+                        .addGap(37, 37, 37))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -222,8 +249,12 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                                             .addComponent(jLabel4)
                                             .addComponent(txtmateno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(cbprivilegio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 152, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(164, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(271, 271, 271)
+                    .addComponent(btnCerrar)
+                    .addContainerGap(272, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,14 +293,20 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                     .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtpassre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 21, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnsave)
-                    .addComponent(btnmodify)
-                    .addComponent(btndelete)
-                    .addComponent(btncerrar)
-                    .addComponent(btnupdate)
-                    .addComponent(btnlimpiar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnsave)
+                        .addComponent(btnmodify)
+                        .addComponent(btndelete)
+                        .addComponent(btnupdate)
+                        .addComponent(btnlimpiar))
+                    .addComponent(btnCerrar1))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(114, 114, 114)
+                    .addComponent(btnCerrar)
+                    .addContainerGap(115, Short.MAX_VALUE)))
         );
 
         jpTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Usuarios"));
@@ -423,14 +460,23 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         this.btndelete.setEnabled(false);
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
-    private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-        Menu men=new Menu();
+        Menu men=new Menu(rut,nombre,paterno,materno,privilegio,clave);
         men.setLocationRelativeTo(null);
+        men.setTitle("Gestión Hotelera - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
         men.setVisible(true);
-        ud.closeConnection();
         dispose();
-    }//GEN-LAST:event_btncerrarActionPerformed
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnCerrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar1ActionPerformed
+        // TODO add your handling code here:
+        Menu men=new Menu(rut,nombre,paterno,materno,privilegio,clave);
+        men.setLocationRelativeTo(null);
+        men.setTitle("Gestión Hotelera - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
+        men.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCerrar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -463,8 +509,9 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnCerrar1;
     public javax.swing.JButton btnbuscarrut;
-    private javax.swing.JButton btncerrar;
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JButton btnmodify;

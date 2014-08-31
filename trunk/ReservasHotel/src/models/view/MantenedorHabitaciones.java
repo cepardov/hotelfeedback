@@ -30,6 +30,7 @@ import utilidades.DataBaseInstance;
  * @author cepardov
  */
 public class MantenedorHabitaciones extends javax.swing.JFrame {
+    String rut,nombre,paterno,materno,privilegio,clave;
     Habitacionbeans hb=new Habitacionbeans();
     Habitaciondao hd=new Habitaciondao();
     private FileInputStream fis;
@@ -39,14 +40,31 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     int idhab;
     /**
      * Creates new form MantenedorHabitaciones
+     * @param rut
+     * @param nombre
+     * @param paterno
+     * @param materno
+     * @param privilegio
+     * @param clave
      */
-    public MantenedorHabitaciones() {
+    public MantenedorHabitaciones(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
         this.updateTabla();
         this.getComboTipo();
+        
+        //set variables locales con datos sensibles
+        this.rut=rut;
+        this.nombre=nombre;
+        this.paterno=paterno;
+        this.materno=materno;
+        this.privilegio=privilegio;
+        this.clave=clave;
     }
     
-    public void getComboTipo(){
+    public MantenedorHabitaciones(){
+    }
+    
+    private void getComboTipo(){
          try{
             DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
             Connection conexion = DataBaseInstance.getInstanceConnection();
@@ -84,7 +102,6 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         btnsave = new javax.swing.JButton();
         btnmodify = new javax.swing.JButton();
         btndelete = new javax.swing.JButton();
-        btncerrar = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -97,7 +114,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         txtnumero = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
-        btnreset = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
@@ -123,13 +140,6 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         btndelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndeleteActionPerformed(evt);
-            }
-        });
-
-        btncerrar.setText("Cerrar");
-        btncerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncerrarActionPerformed(evt);
             }
         });
 
@@ -193,7 +203,12 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
 
         jLabel7.setText("Imágen de habitación");
 
-        btnreset.setText("Reiniciar Formulario");
+        btnCerrar.setText("Volver al menú");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -212,23 +227,19 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btndelete)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnreset)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btncerrar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCerrar))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
-                            .addComponent(cbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel3)
+                        .addComponent(cbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -254,9 +265,8 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
                     .addComponent(btnsave)
                     .addComponent(btnmodify)
                     .addComponent(btndelete)
-                    .addComponent(btncerrar)
                     .addComponent(btnUpdate)
-                    .addComponent(btnreset))
+                    .addComponent(btnCerrar))
                 .addContainerGap())
         );
 
@@ -287,7 +297,7 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(13, 13, 13))
         );
@@ -326,14 +336,6 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
             catch (IOException ex){ex.printStackTrace();}
         }
     }//GEN-LAST:event_lblFotoMouseClicked
-
-    private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
-        // TODO add your handling code here:}
-        Menu men=new Menu();
-        men.setVisible(true);
-        men.setLocationRelativeTo(null);
-        dispose();
-    }//GEN-LAST:event_btncerrarActionPerformed
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
@@ -401,6 +403,15 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
         System.out.println("valor:"+this.cbtipo.getSelectedIndex()+" "+this.cbtipo.getSelectedItem().toString());
     }//GEN-LAST:event_cbtipoItemStateChanged
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        Menu men=new Menu(rut,nombre,paterno,materno,privilegio,clave);
+        men.setLocationRelativeTo(null);
+        men.setTitle("Gestión Hotelera - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
+        men.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -437,11 +448,10 @@ public class MantenedorHabitaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btncerrar;
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnmodify;
-    private javax.swing.JButton btnreset;
     private javax.swing.JButton btnsave;
     private javax.swing.JComboBox cbpiso;
     private javax.swing.JComboBox cbtipo;

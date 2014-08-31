@@ -11,7 +11,7 @@ package models.view;
  * @author cepardov
  */
 public class Menu extends javax.swing.JFrame {
-    //String rut,nombre,paterno,materno,privilegio,clave;
+    String rut,nombre,paterno,materno,privilegio,clave;
     /**
      * Creates new form Menu
      * @param rut
@@ -24,6 +24,12 @@ public class Menu extends javax.swing.JFrame {
     public Menu(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
         this.funcPrivilegio(privilegio);
+        this.rut=rut;
+        this.nombre=nombre;
+        this.paterno=paterno;
+        this.materno=materno;
+        this.privilegio=privilegio;
+        this.clave=clave;
     }
     public Menu() {
         initComponents();
@@ -319,13 +325,13 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnmenusalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenusalirActionPerformed
         // TODO add your handling code here:
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnmenusalirActionPerformed
 
     private void btnmantenedorusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmantenedorusuarioActionPerformed
         // TODO add your handling code here:
-        MantenedorUsuario mu=new MantenedorUsuario();
-        mu.setTitle("Mantenedor de Usuarios [Sesion] - Usuario");
+        MantenedorUsuario mu=new MantenedorUsuario(rut,nombre,paterno,materno,privilegio,clave);
+        mu.setTitle("Mantenedor de Usuarios - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
         mu.setLocationRelativeTo(null);
         mu.setVisible(true);
         this.setVisible(false);
@@ -340,8 +346,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnMantenedorTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenedorTipoActionPerformed
         // TODO add your handling code here:
-        MantenedorTipo mt=new MantenedorTipo();
-        mt.setTitle("Mantenedor Tipo");
+        MantenedorTipo mt=new MantenedorTipo(rut,nombre,paterno,materno,privilegio,clave);
+        mt.setTitle("Mantenedor Tipo - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
         mt.setLocationRelativeTo(null);
         mt.setVisible(true);
         this.setVisible(false);
@@ -349,8 +355,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnMantenedorHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenedorHabitacionActionPerformed
         // TODO add your handling code here:
-        MantenedorHabitaciones mh=new MantenedorHabitaciones();
-        mh.setTitle("Mantenedor habitaciones");
+        MantenedorHabitaciones mh=new MantenedorHabitaciones(rut,nombre,paterno,materno,privilegio,clave);
+        mh.setTitle("Mantenedor habitaciones - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
         mh.setLocationRelativeTo(null);
         mh.setVisible(true);
         this.setVisible(false);
@@ -358,8 +364,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnMantenedorClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenedorClientesActionPerformed
         // TODO add your handling code here:
-        MantenedorClientes mc=new MantenedorClientes();
-        mc.setTitle("Mantenedor Clientes");
+        MantenedorClientes mc=new MantenedorClientes(rut,nombre,paterno,materno,privilegio,clave);
+        mc.setTitle("Mantenedor Clientes - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
         mc.setLocationRelativeTo(null);
         mc.setVisible(true);
         this.setVisible(false);
@@ -367,8 +373,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnMantenedorReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantenedorReservaActionPerformed
         // TODO add your handling code here:
-        MantenedorReserva mr=new MantenedorReserva();
-        mr.setTitle("Mantenedor Reserva");
+        MantenedorReserva mr=new MantenedorReserva(rut,nombre,paterno,materno,privilegio,clave);
+        mr.setTitle("Mantenedor Reserva - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
         mr.setLocationRelativeTo(null);
         mr.setVisible(true);
         this.setVisible(false);
