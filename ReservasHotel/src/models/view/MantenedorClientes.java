@@ -6,24 +6,44 @@ import models.dao.Clientedao;
 
 
 public class MantenedorClientes extends javax.swing.JFrame {
+    String rut,nombre,paterno,materno,privilegio,clave;
     Clientebeans c=new Clientebeans();
     Clientedao cl=new Clientedao();
     Object [][] dtcliente;
     int fila;
     int idcliente=0;
-    public MantenedorClientes() {
+    /**
+     * Creates new form MantenedorHabitaciones
+     * @param rut
+     * @param nombre
+     * @param paterno
+     * @param materno
+     * @param privilegio
+     * @param clave
+     */
+    public MantenedorClientes(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
         this.updateTabla();
+        
+        //set variables locales con datos sensibles
+        this.rut=rut;
+        this.nombre=nombre;
+        this.paterno=paterno;
+        this.materno=materno;
+        this.privilegio=privilegio;
+        this.clave=clave;
+    }
+    
+    public MantenedorClientes(){
     }
 
-    private void updateTabla(){  
-                
-                String[] columNames = {"Rut","Nombre","Apellido Paterno","Apellido Materno","Telefono","Mail"};  
-                dtcliente = cl.getCliente();
-                DefaultTableModel datos = new DefaultTableModel(dtcliente,columNames);                        
-                tabla.setModel(datos); 
-                TableColumn columna = tabla.getColumn("Rut");
-            }
+    private void updateTabla(){
+        String[] columNames = {"Rut","Nombre","Apellido Paterno","Apellido Materno","Telefono","Mail"};  
+        dtcliente = cl.getCliente();
+        DefaultTableModel datos = new DefaultTableModel(dtcliente,columNames);                        
+        tabla.setModel(datos); 
+        TableColumn columna = tabla.getColumn("Rut");
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,7 +96,7 @@ public class MantenedorClientes extends javax.swing.JFrame {
             }
         });
 
-        btnCerrar.setText("Cerrar");
+        btnCerrar.setText("Volver al menú");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -181,12 +201,13 @@ public class MantenedorClientes extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txtmaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(btnCerrar)
-                    .addComponent(jButton5))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2)
+                        .addComponent(jButton3)
+                        .addComponent(btnCerrar)))
                 .addContainerGap())
         );
 
@@ -322,8 +343,9 @@ public class MantenedorClientes extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-        Menu men=new Menu();
+        Menu men=new Menu(rut,nombre,paterno,materno,privilegio,clave);
         men.setLocationRelativeTo(null);
+        men.setTitle("Gestión Hotelera - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
         men.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed

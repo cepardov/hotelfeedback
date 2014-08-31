@@ -10,24 +10,44 @@ import models.dao.Tipodao;
  */
 
 public class MantenedorTipo extends javax.swing.JFrame {
+    String rut,nombre,paterno,materno,privilegio,clave;
     Tipobeans t=new Tipobeans();
     Tipodao ti=new Tipodao();
     Object [][] dttipo;
     int fila;
     int idtipo=0;
-    public MantenedorTipo() {
+    /**
+     * Creates new form MantenedorHabitaciones
+     * @param rut
+     * @param nombre
+     * @param paterno
+     * @param materno
+     * @param privilegio
+     * @param clave
+     */
+    public MantenedorTipo(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
         this.updateTabla();
+        
+        //set variables locales con datos sensibles
+        this.rut=rut;
+        this.nombre=nombre;
+        this.paterno=paterno;
+        this.materno=materno;
+        this.privilegio=privilegio;
+        this.clave=clave;
+    }
+    
+    public MantenedorTipo(){
     }
 
     private void updateTabla(){  
-                
-                String[] columNames = {"Idtipo","Nombre","Descripcion","Precio"};  
-                dttipo = ti.getTipo();
-                DefaultTableModel datos = new DefaultTableModel(dttipo,columNames);                        
-                tabla.setModel(datos); 
-                TableColumn columna = tabla.getColumn("Idtipo");
-            }
+        String[] columNames = {"Idtipo","Nombre","Descripcion","Precio"};  
+        dttipo = ti.getTipo();
+        DefaultTableModel datos = new DefaultTableModel(dttipo,columNames);                        
+        tabla.setModel(datos); 
+        TableColumn columna = tabla.getColumn("Idtipo");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,7 +57,6 @@ public class MantenedorTipo extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,6 +65,7 @@ public class MantenedorTipo extends javax.swing.JFrame {
         txtprecio = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtdescripcion = new javax.swing.JTextArea();
+        btnCerrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
@@ -75,13 +95,6 @@ public class MantenedorTipo extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Cerrar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilidades/IMG/Actualizar.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +111,13 @@ public class MantenedorTipo extends javax.swing.JFrame {
         txtdescripcion.setColumns(20);
         txtdescripcion.setRows(5);
         jScrollPane2.setViewportView(txtdescripcion);
+
+        btnCerrar.setText("Volver al menú");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,21 +136,19 @@ public class MantenedorTipo extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(42, 42, 42)
+                        .addComponent(btnCerrar))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(41, 41, 41)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,8 +173,8 @@ public class MantenedorTipo extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(btnCerrar))
                 .addContainerGap())
         );
 
@@ -249,12 +267,14 @@ public class MantenedorTipo extends javax.swing.JFrame {
         this.updateTabla();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Menu men=new Menu();
-        men.setVisible(true);
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        Menu men=new Menu(rut,nombre,paterno,materno,privilegio,clave);
         men.setLocationRelativeTo(null);
+        men.setTitle("Gestión Hotelera - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
+        men.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,10 +312,10 @@ public class MantenedorTipo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

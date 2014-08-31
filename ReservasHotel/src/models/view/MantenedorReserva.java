@@ -13,7 +13,6 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.DefaultComboBoxModel;
 import models.beans.Reservabeans;
-import models.entity.Cliente;
 import utilidades.DataBaseInstance;
 
 /**
@@ -21,19 +20,35 @@ import utilidades.DataBaseInstance;
  * @author cepardov
  */
 public class MantenedorReserva extends javax.swing.JFrame {
-    String rut;
-    String nombre;
-    String paterno;
-    String materno;
+    String rut,nombre,paterno,materno,privilegio,clave;
     String telefono;
     String mail;
-    
-    public MantenedorReserva() {
+    /**
+     * Creates new form MantenedorHabitaciones
+     * @param rut
+     * @param nombre
+     * @param paterno
+     * @param materno
+     * @param privilegio
+     * @param clave
+     */
+    public MantenedorReserva(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
         this.getComboTipo();
+        
+        //set variables locales con datos sensibles
+        this.rut=rut;
+        this.nombre=nombre;
+        this.paterno=paterno;
+        this.materno=materno;
+        this.privilegio=privilegio;
+        this.clave=clave;
     }
-    //trabajando en combo box
-    public void getComboTipo(){
+    
+    public MantenedorReserva(){
+    }
+
+    private void getComboTipo(){
          try{
             DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
             Connection conexion = DataBaseInstance.getInstanceConnection();
@@ -102,7 +117,6 @@ public class MantenedorReserva extends javax.swing.JFrame {
         btnsave = new javax.swing.JButton();
         btnmodify = new javax.swing.JButton();
         btndelete = new javax.swing.JButton();
-        btncerrar = new javax.swing.JButton();
         btnupdate = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnbuscarrut = new javax.swing.JButton();
@@ -138,6 +152,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
         jButton18 = new javax.swing.JButton();
         txtrut = new javax.swing.JFormattedTextField();
         txtrut4 = new javax.swing.JFormattedTextField();
+        btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,13 +177,6 @@ public class MantenedorReserva extends javax.swing.JFrame {
         btndelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndeleteActionPerformed(evt);
-            }
-        });
-
-        btncerrar.setText("Cerrar");
-        btncerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncerrarActionPerformed(evt);
             }
         });
 
@@ -405,6 +413,13 @@ public class MantenedorReserva extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        btnCerrar.setText("Volver al menú");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HoraLayout = new javax.swing.GroupLayout(Hora);
         Hora.setLayout(HoraLayout);
         HoraLayout.setHorizontalGroup(
@@ -422,8 +437,8 @@ public class MantenedorReserva extends javax.swing.JFrame {
                         .addComponent(btndelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnupdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btncerrar))
+                        .addGap(40, 40, 40)
+                        .addComponent(btnCerrar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HoraLayout.createSequentialGroup()
                         .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -442,39 +457,43 @@ public class MantenedorReserva extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(185, 185, 185)
                         .addComponent(txtrut4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         HoraLayout.setVerticalGroup(
             HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HoraLayout.createSequentialGroup()
-                .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(HoraLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCerrar))
+                    .addGroup(HoraLayout.createSequentialGroup()
+                        .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HoraLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(btnbuscarrut)
+                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)))
+                            .addComponent(txtrut4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(HoraLayout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(HoraLayout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(btnbuscarrut)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)))
-                    .addComponent(txtrut4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(HoraLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(HoraLayout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnsave)
-                    .addComponent(btnmodify)
-                    .addComponent(btndelete)
-                    .addComponent(btncerrar)
-                    .addComponent(btnupdate)
-                    .addComponent(btnlimpiar))
+                            .addComponent(btnsave)
+                            .addComponent(btnmodify)
+                            .addComponent(btndelete)
+                            .addComponent(btnupdate)
+                            .addComponent(btnlimpiar))))
                 .addContainerGap())
         );
 
@@ -552,15 +571,6 @@ public class MantenedorReserva extends javax.swing.JFrame {
         this.btnsave.setVisible(true);
     }//GEN-LAST:event_btndeleteActionPerformed
 
-    private void btncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarActionPerformed
-        // TODO add your handling code here:
-//        ud.closeConnection();
-        Menu men=new Menu();
-        men.setLocationRelativeTo(null);
-        men.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btncerrarActionPerformed
-
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
 //        this.updateTabla();
@@ -588,6 +598,15 @@ public class MantenedorReserva extends javax.swing.JFrame {
             
                    
     }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        Menu men=new Menu(rut,nombre,paterno,materno,privilegio,clave);
+        men.setLocationRelativeTo(null);
+        men.setTitle("Gestión Hotelera - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
+        men.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -627,8 +646,8 @@ public class MantenedorReserva extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Hora;
     private javax.swing.JLabel Nombre3;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnbuscarrut;
-    private javax.swing.JButton btncerrar;
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JButton btnmodify;
