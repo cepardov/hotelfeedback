@@ -179,6 +179,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btn6.setText("Ingreso de Clientes");
+        btn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn6ActionPerformed(evt);
+            }
+        });
 
         btn7.setText("Reservar");
 
@@ -394,6 +399,15 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.lbldescripcion.setText(this.btnMantenedorReserva.getText()+": Cree, edite y elimine reservas relizadas");
     }//GEN-LAST:event_btnMantenedorReservaMouseEntered
+
+    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+        // TODO add your handling code here:
+        MantenedorClientes mc=new MantenedorClientes(rut,nombre,paterno,materno,privilegio,clave);
+        mc.setTitle("Ingreso Clientes - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
+        mc.setLocationRelativeTo(null);
+        mc.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn6ActionPerformed
 
     /**
      * @param args the command line arguments
