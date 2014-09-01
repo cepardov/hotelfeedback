@@ -189,12 +189,14 @@
                   </Group>
                   <EmptySpace type="separate" pref="21" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnsave" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnmodify" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btndelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnupdate" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnlimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnsave" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnmodify" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btndelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnlimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Component id="btnCerrar1" min="-2" max="-2" attributes="0"/>
                   </Group>
