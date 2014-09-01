@@ -66,9 +66,6 @@ public class Menu extends javax.swing.JFrame {
         btnMantenedorReserva = new javax.swing.JButton();
         btn6 = new javax.swing.JButton();
         btn7 = new javax.swing.JButton();
-        btn8 = new javax.swing.JButton();
-        btn9 = new javax.swing.JButton();
-        btn10 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmSesion = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -80,7 +77,7 @@ public class Menu extends javax.swing.JFrame {
         btnmenusalir = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Menú Principal"));
 
@@ -186,12 +183,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btn7.setText("Reservar");
-
-        btn8.setText("Crear Usuario");
-
-        btn9.setText("Crear Tipo Habitación");
-
-        btn10.setText("Crear Habitación");
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,10 +207,7 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 293, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -229,17 +222,11 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btnMantenedorTipo)
                     .addComponent(btn7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMantenedorHabitacion)
-                    .addComponent(btn8))
+                .addComponent(btnMantenedorHabitacion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMantenedorClientes)
-                    .addComponent(btn9))
+                .addComponent(btnMantenedorClientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMantenedorReserva)
-                    .addComponent(btn10))
+                .addComponent(btnMantenedorReserva)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(lblayuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -409,6 +396,15 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn6ActionPerformed
 
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        // TODO add your handling code here:
+        MantenedorReserva mr=new MantenedorReserva(rut,nombre,paterno,materno,privilegio,clave);
+        mr.setTitle("Reserva Habitación - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
+        mr.setLocationRelativeTo(null);
+        mr.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -445,11 +441,8 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn10;
     private javax.swing.JButton btn6;
     private javax.swing.JButton btn7;
-    private javax.swing.JButton btn8;
-    private javax.swing.JButton btn9;
     private javax.swing.JButton btnMantenedorClientes;
     private javax.swing.JButton btnMantenedorHabitacion;
     private javax.swing.JButton btnMantenedorReserva;

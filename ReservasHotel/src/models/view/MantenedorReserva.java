@@ -41,6 +41,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
     public MantenedorReserva(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
         this.getComboTipo();
+        this.privilegio(privilegio);
         
         //set variables locales con datos sensibles
         this.rut=rut;
@@ -52,6 +53,14 @@ public class MantenedorReserva extends javax.swing.JFrame {
     }
     
     public MantenedorReserva(){
+    }
+    
+    private void privilegio(String privilegio){
+        if("Recepcionista".equals(privilegio)){
+            this.jpLista.setVisible(false);
+            this.btndelete.setVisible(false);
+            this.btnupdate.setVisible(false);
+        }
     }
 
     private void getComboTipo(){
@@ -150,11 +159,11 @@ public class MantenedorReserva extends javax.swing.JFrame {
         txtrut = new javax.swing.JFormattedTextField();
         btnCerrar = new javax.swing.JButton();
         lblFoto = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        jpLista = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         Hora.setBorder(javax.swing.BorderFactory.createTitledBorder("Reserva de Habitaciones"));
 
@@ -472,7 +481,7 @@ jPanel2Layout.setHorizontalGroup(
     lblFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     lblFoto.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-    jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Reserva Historica"));
+    jpLista.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista Reserva Historica"));
 
     tabla.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -487,18 +496,18 @@ jPanel2Layout.setHorizontalGroup(
     ));
     jScrollPane1.setViewportView(tabla);
 
-    javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-    jPanel4.setLayout(jPanel4Layout);
-    jPanel4Layout.setHorizontalGroup(
-        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel4Layout.createSequentialGroup()
+    javax.swing.GroupLayout jpListaLayout = new javax.swing.GroupLayout(jpLista);
+    jpLista.setLayout(jpListaLayout);
+    jpListaLayout.setHorizontalGroup(
+        jpListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jpListaLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jScrollPane1)
             .addContainerGap())
     );
-    jPanel4Layout.setVerticalGroup(
-        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel4Layout.createSequentialGroup()
+    jpListaLayout.setVerticalGroup(
+        jpListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jpListaLayout.createSequentialGroup()
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(0, 9, Short.MAX_VALUE))
     );
@@ -525,7 +534,7 @@ jPanel2Layout.setHorizontalGroup(
                 .addGroup(HoraLayout.createSequentialGroup()
                     .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jpLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(HoraLayout.createSequentialGroup()
                                 .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(HoraLayout.createSequentialGroup()
@@ -569,17 +578,18 @@ jPanel2Layout.setHorizontalGroup(
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jpLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(HoraLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnsave)
-                        .addComponent(btnmodify)
-                        .addComponent(btndelete)
-                        .addComponent(btnupdate)
-                        .addComponent(btnlimpiar)))
+                    .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnupdate, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(HoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnsave)
+                            .addComponent(btnmodify)
+                            .addComponent(btndelete)
+                            .addComponent(btnlimpiar))))
                 .addComponent(btnCerrar))
             .addContainerGap())
     );
@@ -777,9 +787,9 @@ jPanel2Layout.setHorizontalGroup(
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jpLista;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JTable tabla;
     private datechooser.beans.DateChooserCombo txtfechainicio;
