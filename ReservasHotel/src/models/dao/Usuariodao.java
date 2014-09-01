@@ -135,7 +135,9 @@ public class Usuariodao {
             System.out.println("[i] Nuevo registro ok");
             closeConnection();
         } catch (SQLException se) {
-            System.err.println("Se ha producido un error de BD.");
+            this.error("Se ha producido un problema al intentar guardar con el identificador \""+usuario.getRutusuario()+"\", la razón\n"
+                    + "de este error puede deberse a que el usuario ya ha sido registrado con anterioridad.\n"
+                    + "Consulte con el administrador del sistema para mas información.");
             System.err.println(se.getMessage());
         }
     }
@@ -158,7 +160,7 @@ public class Usuariodao {
             System.out.println("[i] Actualización de registro ok");
             closeConnection();
         } catch (SQLException se) {
-            System.err.println("Se ha producido un error de BD.");
+            this.error("Error:\n"+se);
             System.err.println(se.getMessage());
         }
     }
@@ -170,20 +172,24 @@ public class Usuariodao {
             if (usuario.getRutusuario() != null) {
                 delUsuario = getConnection().prepareStatement(
                         "DELETE FROM usuario WHERE rutusuario = ?");
-
                 delUsuario.setString(1, usuario.getRutusuario());
                 delUsuario.executeUpdate();
             }
-
-
             closeConnection();
         } catch (SQLException se) {
-            System.err.println("Se ha producido un error de BD.");
+            this.error("No es posible eliminar este usuario, las causas de este problema puede ser que\n"
+                    + "no existe el identificado del usuario o que este corresponda a un usuario con\n"
+                    + "privilegios elevados necesarios para la operacion dela sistema\n"
+                    + "Codigo error: "+se.getErrorCode());
             System.err.println(se.getMessage());
         }
     }
 
     public void closeConnection() {
         DataBaseInstance.closeConnection();
+    }
+    
+    public void error(String frase){
+        JOptionPane.showMessageDialog(null,frase,"Validación en base de datos", JOptionPane.ERROR_MESSAGE);
     }
 }
