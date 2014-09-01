@@ -17,6 +17,7 @@ import models.dao.Usuariodao;
  */
 public class MantenedorUsuario extends javax.swing.JFrame {
     String rut,nombre,paterno,materno,privilegio,clave;
+    String rutin;
     boolean estadoFom;
     Usuariobeans ub=new Usuariobeans();
     Usuariodao ud=new Usuariodao();
@@ -36,6 +37,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         initComponents();
         this.updateTabla();
         this.primerInicio(primerInicio);
+        this.rutin=this.txtrut.getText();
         this.btnmodify.setEnabled(false);
         this.btndelete.setEnabled(false);
         
@@ -396,7 +398,6 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
         this.setAlwaysOnTop(false);
-        String rutin=this.txtrut.getText();
         String rutusuario = this.txtrut.getText();
         String nombreU = this.txtnombre.getText();
         String paternoU = this.txtpaterno.getText();
@@ -517,7 +518,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
