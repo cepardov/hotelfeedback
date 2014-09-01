@@ -7,7 +7,6 @@
 package models.view;
 
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import models.beans.Usuariobeans;
 import models.dao.Usuariodao;
 
@@ -17,6 +16,7 @@ import models.dao.Usuariodao;
  */
 public class MantenedorUsuario extends javax.swing.JFrame {
     String rut,nombre,paterno,materno,privilegio,clave;
+    boolean primerinicio=false;
     Usuariobeans ub=new Usuariobeans();
     Usuariodao ud=new Usuariodao();
     Object [][] dttipo;
@@ -33,6 +33,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     public MantenedorUsuario(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
         initComponents();
         this.updateTabla();
+        this.primerInicio();
         this.btnmodify.setEnabled(false);
         this.btndelete.setEnabled(false);
         
@@ -46,6 +47,18 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     }
     
     public MantenedorUsuario(){
+    }
+    
+    private void primerInicio(){
+        if(this.primerinicio==true){
+            cbprivilegio.setSelectedItem("Administrador");
+            cbprivilegio.setEnabled(false);
+            btnbuscarrut.setEnabled(false);
+            jpTabla.setVisible(false);
+            btnupdate.setEnabled(false);
+        } else {
+            
+        }
     }
     
     private void updateTabla(){
@@ -294,12 +307,13 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                     .addComponent(txtpassre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnsave)
-                        .addComponent(btnmodify)
-                        .addComponent(btndelete)
-                        .addComponent(btnupdate)
-                        .addComponent(btnlimpiar))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnupdate, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnsave)
+                            .addComponent(btnmodify)
+                            .addComponent(btndelete)
+                            .addComponent(btnlimpiar)))
                     .addComponent(btnCerrar1))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
