@@ -29,7 +29,7 @@ public class LoginServ extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.lblayuda.setText("Situe el puntero del mause donde desee ayuda");
         this.lblversion.setText(version);
-        this.setTitle("Inicio de sesión");;
+        this.setTitle("Inicio de sesión");
         this.comprobarUsuario();
     }
     
@@ -76,10 +76,10 @@ public class LoginServ extends javax.swing.JFrame {
             MantenedorUsuario mu=new MantenedorUsuario("","","","","","",true);
             mu.setLocationRelativeTo(null);
             mu.setTitle("Primera ejecución - Ingreso Usuario Administrador");
-            mu.setAlwaysOnTop(true);
             JOptionPane.showMessageDialog(null, "Bienvenido a FeedBack \"Gestión Hotelera de Reservas\" \n"
                     + "Es la primera vez que inicia la aplicación, en seguida aparecerá el ingreso del primer usuario \n"
                     + "la cual aparecerá solo una vez quien tendrá como usuario predeterminado de administración del sistema.", "Primer Inicio del Sistema", JOptionPane.INFORMATION_MESSAGE);
+            mu.setAlwaysOnTop(true);
             mu.setVisible(true);
         } else {
             System.out.println("Existen en base de datos "+ud.getUserCount()+" usuario (s) disponibles.");
