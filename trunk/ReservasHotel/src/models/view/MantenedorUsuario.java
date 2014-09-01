@@ -6,6 +6,7 @@
 
 package models.view;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.beans.Usuariobeans;
 import models.dao.Usuariodao;
@@ -16,6 +17,7 @@ import models.dao.Usuariodao;
  */
 public class MantenedorUsuario extends javax.swing.JFrame {
     String rut,nombre,paterno,materno,privilegio,clave;
+    boolean estadoFom;
     Usuariobeans ub=new Usuariobeans();
     Usuariodao ud=new Usuariodao();
     Object [][] dttipo;
@@ -50,14 +52,22 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     public MantenedorUsuario(){
     }
     
+    private void mostrarLogin(){
+        dispose();
+        JOptionPane.showMessageDialog(null,"El usuario administrador "+ub.getNombre()+" "+ub.getPaterno()+" se ha creado con exito","Configuraciones iniciales", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     private void primerInicio(boolean estadoPI){
         if(estadoPI==true){
+            this.estadoFom=estadoPI;
+            System.out.println("EstadoForm="+this.estadoFom);
             cbprivilegio.setSelectedItem("Administrador");
             cbprivilegio.setEnabled(false);
             btnbuscarrut.setEnabled(false);
             jpTabla.setVisible(false);
             btnupdate.setEnabled(false);
             this.btnVolverMenu.setEnabled(false);
+            this.setSize(650, 360);
         } else {
             this.btnCerrar.setVisible(false);
         }
@@ -235,7 +245,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
                                             .addComponent(txtmateno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addContainerGap(195, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -266,7 +276,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                                 .addComponent(btnmodify)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btndelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnupdate)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnVolverMenu)))
@@ -346,7 +356,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         jpTabla.setLayout(jpTablaLayout);
         jpTablaLayout.setHorizontalGroup(
             jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
         );
         jpTablaLayout.setVerticalGroup(
             jpTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,7 +371,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -369,9 +379,8 @@ public class MantenedorUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -380,25 +389,28 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         // TODO add your handling code here:
         String rutusuario = this.txtrut.getText();
-        String nombre = this.txtnombre.getText();
-        String paterno = this.txtpaterno.getText();
-        String materno = this.txtmateno.getText();
+        String nombreU = this.txtnombre.getText();
+        String paternoU = this.txtpaterno.getText();
+        String maternoU = this.txtmateno.getText();
         String telefono = this.txttelefono.getText();
         String mail = this.txtemail.getText();
-        String privilegio = this.cbprivilegio.getSelectedItem().toString();
-        String clave = this.txtpass.getText();
+        String privilegioU = this.cbprivilegio.getSelectedItem().toString();
+        String claveU = this.txtpass.getText();
         String clave2 = this.txtpassre.getText();
         
         ub.setRutusuario(rutusuario);
-        ub.setNombre(nombre);
-        ub.setPaterno(paterno);
-        ub.setMaterno(materno);
+        ub.setNombre(nombreU);
+        ub.setPaterno(paternoU);
+        ub.setMaterno(maternoU);
         ub.setTelefono(telefono);
         ub.setMail(mail);
-        ub.setPrivilegio(privilegio);
-        ub.setClave(clave);
+        ub.setPrivilegio(privilegioU);
+        ub.setClave(claveU);
         
         ub.save();
+        if(this.estadoFom==true){
+            this.mostrarLogin();
+        }
         this.updateTabla();
         this.btnsave.setVisible(false);
         this.btnmodify.setEnabled(true);
@@ -408,23 +420,25 @@ public class MantenedorUsuario extends javax.swing.JFrame {
     private void btnmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifyActionPerformed
         // TODO add your handling code here:
         String rutusuario = this.txtrut.getText();
-        String nombre = this.txtnombre.getText();
-        String paterno = this.txtpaterno.getText();
-        String materno = this.txtmateno.getText();
+        String nombreU = this.txtnombre.getText();
+        String paternoU = this.txtpaterno.getText();
+        String maternoU = this.txtmateno.getText();
         String telefono = this.txttelefono.getText();
         String mail = this.txtemail.getText();
-        String privilegio = this.cbprivilegio.getSelectedItem().toString();
-        String clave = this.txtpass.getText();
+        String privilegioU = this.cbprivilegio.getSelectedItem().toString();
+        String claveU = this.txtpass.getText();
         String clave2 = this.txtpassre.getText();
         
+        //Validación formulario
+        
         ub.setRutusuario(rutusuario);
-        ub.setNombre(nombre);
-        ub.setPaterno(paterno);
-        ub.setMaterno(materno);
+        ub.setNombre(nombreU);
+        ub.setPaterno(paternoU);
+        ub.setMaterno(maternoU);
         ub.setTelefono(telefono);
         ub.setMail(mail);
-        ub.setPrivilegio(privilegio);
-        ub.setClave(clave);
+        ub.setPrivilegio(privilegioU);
+        ub.setClave(claveU);
         
         ub.update();
         this.updateTabla();
