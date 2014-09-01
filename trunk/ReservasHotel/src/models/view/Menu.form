@@ -69,7 +69,7 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -135,9 +135,6 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btn6" min="-2" pref="150" max="-2" attributes="0"/>
                               <Component id="btn7" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="btn8" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="btn9" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="btn10" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="293" max="32767" attributes="0"/>
                       </Group>
@@ -159,20 +156,11 @@
                       <Component id="btn7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnMantenedorHabitacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnMantenedorHabitacion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnMantenedorClientes" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn9" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnMantenedorClientes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnMantenedorReserva" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn10" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnMantenedorReserva" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="119" max="32767" attributes="0"/>
                   <Component id="lblayuda" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -278,21 +266,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Reservar"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btn8">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Crear Usuario"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btn9">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Crear Tipo Habitaci&#xf3;n"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btn10">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Crear Habitaci&#xf3;n"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn7ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
