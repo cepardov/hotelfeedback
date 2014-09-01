@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import models.beans.Reservabeans;
 import models.dao.Clientedao;
 import models.dao.Habitaciondao;
-import models.entity.Cliente;
 import utilidades.CustomImageIcon;
 import utilidades.DataBaseInstance;
 
@@ -56,6 +55,7 @@ public class MantenedorReserva extends javax.swing.JFrame {
     }
     
     private void privilegio(String privilegio){
+        System.out.println("privilegio: "+privilegio);
         if("Recepcionista".equals(privilegio)){
             this.jpLista.setVisible(false);
             this.btndelete.setVisible(false);

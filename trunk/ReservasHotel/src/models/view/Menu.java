@@ -247,6 +247,7 @@ public class Menu extends javax.swing.JFrame {
         jmSesion.setText("Sesión");
 
         jMenu3.setText("Administrar Cuenta");
+        jMenu3.setEnabled(false);
 
         jMenuItem1.setText("Cambiar Contraseña");
         jMenu3.add(jMenuItem1);
@@ -261,6 +262,11 @@ public class Menu extends javax.swing.JFrame {
 
         btnmenubloq.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         btnmenubloq.setText("Bloquear");
+        btnmenubloq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmenubloqActionPerformed(evt);
+            }
+        });
         jmSesion.add(btnmenubloq);
 
         btnmenucerrarsesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
@@ -416,6 +422,13 @@ public class Menu extends javax.swing.JFrame {
         mr.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn7ActionPerformed
+
+    private void btnmenubloqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenubloqActionPerformed
+        // TODO add your handling code here:
+        LoginServ login=new LoginServ();
+        login.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnmenubloqActionPerformed
 
     /**
      * @param args the command line arguments

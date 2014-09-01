@@ -19,7 +19,7 @@ public class LoginServ extends javax.swing.JFrame {
     Usuariodao ud=new Usuariodao();
     int intentos=3;
     String googlecode="http://code.google.com/p/hotelfeedback";
-    String version="V1.0 r76";
+    String version="V1.0 r77";
     String developers="Pablo Santana, Cristian Pardo";
     /**
      * Creates new form LoginServ
@@ -27,7 +27,7 @@ public class LoginServ extends javax.swing.JFrame {
     public LoginServ() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.lblayuda.setText("Situe el puntero del mause donde desee ayuda");
+        this.lblayuda.setText("Situe el puntero del mouse donde desee ayuda");
         this.lblversion.setText(version);
         this.setTitle("Inicio de sesión");
         this.comprobarUsuario();
