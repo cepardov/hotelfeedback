@@ -330,7 +330,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnmantenedorusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmantenedorusuarioActionPerformed
         // TODO add your handling code here:
-        MantenedorUsuario mu=new MantenedorUsuario(rut,nombre,paterno,materno,privilegio,clave);
+        MantenedorUsuario mu=new MantenedorUsuario(rut,nombre,paterno,materno,privilegio,clave,false);
         mu.setTitle("Mantenedor de Usuarios - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
         mu.setLocationRelativeTo(null);
         mu.setVisible(true);
