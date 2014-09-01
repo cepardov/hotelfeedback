@@ -73,11 +73,10 @@ public class LoginServ extends javax.swing.JFrame {
     protected final void comprobarUsuario(){
         System.out.println("Comprobando si existen usuarios en base de datos...");
         if(ud.getUserCount()==0){
-            MantenedorUsuario mu=new MantenedorUsuario("","","","","","");
+            MantenedorUsuario mu=new MantenedorUsuario("","","","","","",true);
             mu.setLocationRelativeTo(null);
             mu.setTitle("Primera ejecución - Ingreso Usuario Administrador");
             mu.setAlwaysOnTop(true);
-            mu.primerinicio=true;
             JOptionPane.showMessageDialog(null, "Bienvenido a FeedBack \"Gestión Hotelera de Reservas\" \n"
                     + "Es la primera vez que inicia la aplicación, en seguida aparecerá el ingreso del primer usuario \n"
                     + "la cual aparecerá solo una vez quien tendrá como usuario predeterminado de administración del sistema.", "Primer Inicio del Sistema", JOptionPane.INFORMATION_MESSAGE);

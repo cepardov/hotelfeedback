@@ -16,7 +16,6 @@ import models.dao.Usuariodao;
  */
 public class MantenedorUsuario extends javax.swing.JFrame {
     String rut,nombre,paterno,materno,privilegio,clave;
-    boolean primerinicio=false;
     Usuariobeans ub=new Usuariobeans();
     Usuariodao ud=new Usuariodao();
     Object [][] dttipo;
@@ -29,11 +28,12 @@ public class MantenedorUsuario extends javax.swing.JFrame {
      * @param materno
      * @param privilegio
      * @param clave
+     * @param primerInicio
      */
-    public MantenedorUsuario(String rut, String nombre, String paterno, String materno, String privilegio, String clave) {
+    public MantenedorUsuario(String rut, String nombre, String paterno, String materno, String privilegio, String clave, boolean primerInicio) {
         initComponents();
         this.updateTabla();
-        this.primerInicio();
+        this.primerInicio(primerInicio);
         this.btnmodify.setEnabled(false);
         this.btndelete.setEnabled(false);
         
@@ -44,20 +44,22 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         this.materno=materno;
         this.privilegio=privilegio;
         this.clave=clave;
+        System.out.println("estado de llegada="+primerInicio);
     }
     
     public MantenedorUsuario(){
     }
     
-    private void primerInicio(){
-        if(this.primerinicio==true){
+    private void primerInicio(boolean estadoPI){
+        if(estadoPI==true){
             cbprivilegio.setSelectedItem("Administrador");
             cbprivilegio.setEnabled(false);
             btnbuscarrut.setEnabled(false);
             jpTabla.setVisible(false);
             btnupdate.setEnabled(false);
+            this.btnVolverMenu.setEnabled(false);
         } else {
-            
+            this.btnCerrar.setVisible(false);
         }
     }
     
@@ -114,7 +116,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
         txtpassre = new javax.swing.JPasswordField();
         btnlimpiar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
-        btnCerrar1 = new javax.swing.JButton();
+        btnVolverMenu = new javax.swing.JButton();
         jpTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -187,17 +189,17 @@ public class MantenedorUsuario extends javax.swing.JFrame {
             }
         });
 
-        btnCerrar.setText("Volver al menú");
+        btnCerrar.setText("cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
             }
         });
 
-        btnCerrar1.setText("Volver al menú");
-        btnCerrar1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverMenu.setText("Volver al menú");
+        btnVolverMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrar1ActionPerformed(evt);
+                btnVolverMenuActionPerformed(evt);
             }
         });
 
@@ -209,19 +211,6 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnsave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnlimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnmodify)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btndelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnupdate)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCerrar1)
-                        .addGap(37, 37, 37))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -229,21 +218,6 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                                 .addComponent(txtrut, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnbuscarrut))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel7))
-                                .addGap(112, 112, 112)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(txtpassre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel6)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -260,14 +234,43 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
-                                            .addComponent(txtmateno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(cbprivilegio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(164, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(271, 271, 271)
-                    .addComponent(btnCerrar)
-                    .addContainerGap(272, Short.MAX_VALUE)))
+                                            .addComponent(txtmateno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addContainerGap(195, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel7))
+                                        .addGap(112, 112, 112)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel8))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtpassre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel9)))
+                                            .addComponent(jLabel6)))
+                                    .addComponent(cbprivilegio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCerrar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnsave)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnlimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnmodify)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btndelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                                .addComponent(btnupdate)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnVolverMenu)))
+                        .addGap(37, 37, 37))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +307,8 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbprivilegio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtpassre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtpassre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrar))
                 .addGap(18, 21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,13 +318,8 @@ public class MantenedorUsuario extends javax.swing.JFrame {
                             .addComponent(btnmodify)
                             .addComponent(btndelete)
                             .addComponent(btnlimpiar)))
-                    .addComponent(btnCerrar1))
+                    .addComponent(btnVolverMenu))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(114, 114, 114)
-                    .addComponent(btnCerrar)
-                    .addContainerGap(115, Short.MAX_VALUE)))
         );
 
         jpTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Usuarios"));
@@ -476,21 +475,17 @@ public class MantenedorUsuario extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-        Menu men=new Menu(rut,nombre,paterno,materno,privilegio,clave);
-        men.setLocationRelativeTo(null);
-        men.setTitle("Gestión Hotelera - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
-        men.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void btnCerrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar1ActionPerformed
+    private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
         // TODO add your handling code here:
         Menu men=new Menu(rut,nombre,paterno,materno,privilegio,clave);
         men.setLocationRelativeTo(null);
         men.setTitle("Gestión Hotelera - "+nombre+" "+paterno+" "+materno+" ["+privilegio+"]");
         men.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnCerrar1ActionPerformed
+    }//GEN-LAST:event_btnVolverMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -524,7 +519,7 @@ public class MantenedorUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnCerrar1;
+    private javax.swing.JButton btnVolverMenu;
     public javax.swing.JButton btnbuscarrut;
     private javax.swing.JButton btndelete;
     private javax.swing.JButton btnlimpiar;
