@@ -19,7 +19,7 @@ public class LoginServ extends javax.swing.JFrame {
     Usuariodao ud=new Usuariodao();
     int intentos=3;
     String googlecode="http://code.google.com/p/hotelfeedback";
-    String version="V1.0 r74";
+    String version="V1.0 r76";
     String developers="Pablo Santana, Cristian Pardo";
     /**
      * Creates new form LoginServ

@@ -123,20 +123,25 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblayuda" alignment="1" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnmantenedorusuario" max="32767" attributes="0"/>
-                              <Component id="btnMantenedorTipo" max="32767" attributes="0"/>
-                              <Component id="btnMantenedorHabitacion" max="32767" attributes="0"/>
-                              <Component id="btnMantenedorClientes" max="32767" attributes="0"/>
-                              <Component id="btnMantenedorReserva" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnMantenedorReserva" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Component id="btn7" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="btn6" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btn6" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="btn7" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnMantenedorTipo" pref="200" max="32767" attributes="0"/>
+                              <Component id="btnMantenedorClientes" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="293" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnMantenedorHabitacion" pref="200" max="32767" attributes="0"/>
+                              <Component id="btnmantenedorusuario" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -146,22 +151,27 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnmantenedorusuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btn6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnMantenedorTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btn7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnMantenedorClientes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="btnmantenedorusuario" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnMantenedorHabitacion" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnMantenedorTipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnMantenedorHabitacion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnMantenedorClientes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnMantenedorReserva" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="119" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Component id="lblayuda" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -171,6 +181,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnmantenedorusuario">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/utilidades/IMG/MantenedorUsuarios.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Mantenedor Usuarios"/>
           </Properties>
           <Events>
@@ -219,6 +232,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnMantenedorTipo">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/utilidades/IMG/MantenedorTipo.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Mantenedor Tipo Habitaci&#xf3;n"/>
           </Properties>
           <Events>
@@ -229,6 +245,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnMantenedorHabitacion">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/utilidades/IMG/MantenedorHabitacion.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Mantenedor Habitaciones"/>
           </Properties>
           <Events>
@@ -238,6 +257,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnMantenedorClientes">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/utilidades/IMG/MantenedorClientes.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Mantenedor Clientes"/>
           </Properties>
           <Events>
@@ -247,6 +269,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnMantenedorReserva">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/utilidades/IMG/MantenedorReserva.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Mantenedor Reserva"/>
           </Properties>
           <Events>
@@ -256,6 +281,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn6">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/utilidades/IMG/addClient.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Ingreso de Clientes"/>
           </Properties>
           <Events>
@@ -264,6 +292,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn7">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/utilidades/IMG/MantenedorReserva.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Reservar"/>
           </Properties>
           <Events>
