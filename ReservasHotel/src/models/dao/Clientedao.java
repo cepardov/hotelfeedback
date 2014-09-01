@@ -132,9 +132,11 @@ public class Clientedao {
             delCliente.setString(1, cliente.getIdcliente());
             delCliente.executeUpdate();
             closeConnection();
-        } catch (SQLException se) {
-            System.err.println("Se ha producido un error de BD.");
-            System.err.println(se.getMessage());
+        } catch (SQLException cause) {
+            JOptionPane.showMessageDialog(null,"El cliente (a) \""+cliente.getNombre()+" "+cliente.getPaterno()+"\""
+                    + " con identificador \""+cliente.getIdcliente()+"\" presenta una reserva vigente,\n"
+                    + "elimine la o las reservas historicas para realizar esta operación.\n"
+                    + "\tCodigo error: "+cause.getErrorCode(),"Base de datos", JOptionPane.ERROR_MESSAGE);
         }
     }
 
