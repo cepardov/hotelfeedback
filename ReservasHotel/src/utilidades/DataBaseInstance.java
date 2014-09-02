@@ -13,11 +13,11 @@ public final class DataBaseInstance {
     //Drivers disponibles
     //Mysql com.mysql.jdbc.Driver puerto 3306
     //Apache derby org.apache.derby.jdbc.ClientDriver puerto 1527
-    private static final String driver="org.apache.derby.jdbc.ClientDriver";//Driver
+    private static final String driver="com.mysql.jdbc.Driver";//Driver
     //Conexión con bases de datos mysql
-    //private static final String url = "jdbc:mysql://localhost"+port+"/"+basedatos;//url, si no utiliza este comentar. (no modificar)
+    private static final String url = "jdbc:mysql://localhost"+port+"/"+basedatos;//url, si no utiliza este comentar. (no modificar)
     //Conexion con base de datos apache derby
-    private static final String url = "jdbc:derby://localhost:"+port+"/"+basedatos;//url, si no utiliza este comentar. (no modificar)
+    //private static final String url = "jdbc:derby://localhost:"+port+"/"+basedatos;//url, si no utiliza este comentar. (no modificar)
 
     public static Connection getInstanceConnection() {
         if (!(conn instanceof Connection)) {
