@@ -6,6 +6,8 @@
 
 package models.view;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import models.dao.Usuariodao;
@@ -19,7 +21,7 @@ public class LoginServ extends javax.swing.JFrame {
     Usuariodao ud=new Usuariodao();
     int intentos=3;
     String googlecode="http://code.google.com/p/hotelfeedback";
-    String version="V1.0 r77";
+    String version="V1.0 r78";
     String developers="Pablo Santana, Cristian Pardo";
     /**
      * Creates new form LoginServ
@@ -85,6 +87,13 @@ public class LoginServ extends javax.swing.JFrame {
             System.out.println("Existen en base de datos "+ud.getUserCount()+" usuario (s) disponibles.");
         }
     }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("utilidades/IMG/hotel-icon.png"));
+        return retValue;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,6 +118,8 @@ public class LoginServ extends javax.swing.JFrame {
         lblfeedback = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("RUT Usuario"));
 
